@@ -1,0 +1,59 @@
+// ============================================================
+// PATCH para KmyTarkovConfiguration - SettingsModel.cs
+// Problema: SwitchLanguageFromGame() faz indexacao direta
+//   LocalizedHelper.CurrentLanguage = LocalizedHelper.LanguageNamesDictionary[gameLanguage];
+// que lança KeyNotFoundException quando a lingua do EFT nao vem
+// num formato de 2 letras exato (ex: "Portuguese" em vez de "pt"),
+// causando freeze do jogo durante o loading (antes do menu).
+//
+// Correcao: usar TryGetValue com fallback para "En", e normalizar
+// o gameLanguage (lowercase + cortar a 2 letras) antes de procurar.
+// ============================================================
+
+// ---------- ANTES (SettingsModel.cs linhas 81-92) ----------
+//
+// private static void SwitchLanguageFromGame(string gameLanguage)
+// {
+//     switch (gameLanguage)
+//     {
+//         case "ch":
+//             LocalizedHelper.CurrentLanguage = "Zh";
+//             break;
+//         default:
+//             LocalizedHelper.CurrentLanguage = LocalizedHelper.LanguageNamesDictionary[gameLanguage];
+//             break;
+//     }
+// }
+
+// ---------- DEPOIS (corrigido) ----------
+private static void SwitchLanguageFromGame(string gameLanguage)
+{
+    if (string.IsNullOrEmpty(gameLanguage))
+    {
+        LocalizedHelper.CurrentLanguage = "En";
+        return;
+    }
+
+    // Normaliza para lowercase e corta a 2 letras (ex: "Portuguese" -> "pt", "en" -> "en")
+    var normalized = gameLanguage.ToLowerInvariant();
+    if (normalized.Length > 2)
+        normalized = normalized.Substring(0, 2);
+
+    switch (normalized)
+    {
+        case "ch":
+        case "zh":
+            LocalizedHelper.CurrentLanguage = "Zh";
+            return;
+    }
+
+    if (LocalizedHelper.LanguageNamesDictionary.TryGetValue(normalized, out var lang))
+    {
+        LocalizedHelper.CurrentLanguage = lang;
+    }
+    else
+    {
+        // Fallback seguro: ingles (o Localized() ja tem fallback "en" tambem)
+        LocalizedHelper.CurrentLanguage = "En";
+    }
+}
