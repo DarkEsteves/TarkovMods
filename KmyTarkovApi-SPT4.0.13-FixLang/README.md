@@ -113,3 +113,124 @@ KmyTarkovApi-SPT4.0.13-FixLang/
 
 - **Original mod & framework:** [kmyuhkyuk](https://github.com/kmyuhkyuk/KmyTarkovApi) — *all credit to the author*
 - **Freeze fix (PT and other languages):** applied manually in this build (not by the original author)
+
+---
+---
+
+# 🇵🇹 Versão em Português
+
+# 🛠️ KmyTarkovApi — Fix para SPT 4.0.13 (Correção de Freeze em PT/Outras Línguas)
+
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![SPT](https://img.shields.io/badge/SPT-4.0.13-green.svg)](https://www.sp-tarkov.com/)
+[![EFT](https://img.shields.io/badge/EFT-0.16.9.40087-orange.svg)](https://www.escapefromtarkov.com/)
+
+> ⚠️ **Este NÃO é o meu mod.** É uma build comunitária de correção de bug do mod original criado por **kmyuhkyuk**.
+> Todo o crédito do mod vai para o autor original. Eu apenas apliquei um patch de correção de freeze e recompilei para **SPT 4.0.13**.
+
+---
+
+## 📌 O que é isto
+
+O **KmyTarkovApi** é uma framework de configuração dentro do jogo para **Escape from Tarkov** (via SPT-AKI / SPT). Adiciona um menu de Configuration Manager acessível dentro do jogo e fornece a base (API) para mods como o **GamePanelHUD**.
+
+Este repositório contém uma **build corrigida do KmyTarkovApi 1.5.0** que resolve um bug de freeze do jogo quando a língua não é inglês nem chinês.
+
+---
+
+## 👤 Autor original e onde ir buscar
+
+| | |
+|---|---|
+| **Autor** | [kmyuhkyuk](https://github.com/kmyuhkyuk) |
+| **Repositório original** | https://github.com/kmyuhkyuk/KmyTarkovApi |
+| **Downloads oficiais** | https://github.com/kmyuhkyuk/KmyTarkovApi/releases |
+| **Licença** | GPL-3.0 |
+
+➡️ **Usa sempre o repositório/releases acima** para versões oficiais e atualizações. Usa esta build corrigida apenas se precisares especificamente do fix descrito abaixo.
+
+---
+
+## 🔧 Compatibilidade
+
+| Componente | Versão |
+|---|---|
+| Escape from Tarkov | build `0.16.9.40087` (cliente correspondente ao SPT 4.0.13) |
+| SPT | `4.0.13` |
+| BepInEx | `5.4.x` (incluído no SPT 4.0.13) |
+| GamePanelHUD | `3.4.0` (requer KmyTarkovApi ≥ 1.5.0) |
+
+> ℹ️ As notas oficiais da 1.5.0 dizem "Compatible SPT-Aki 4.0.0". Esta build foi testada e compilada para **SPT 4.0.13** (EFT `0.16.9.40087`).
+
+---
+
+## 🐛 O bug que isto corrige
+
+Na versão original **1.5.0**, quando a língua do jogo **não era inglês nem chinês**, o mod fazia uma pesquisa direta no dicionário (`LanguageNamesDictionary[gameLanguage]`). O cliente EFT passa a língua em **formato longo** (ex: `"Portuguese"`), mas o dicionário só tem chaves de 2 letras (`"pt"`, `"en"`, `"zh"`, ...). Isso lançava uma `KeyNotFoundException` **durante o loading** → o jogo travava antes de chegar ao menu principal.
+
+Muitos utilizadores viram o erro *"KmyTarkovConfiguration.dll is configured to support only English and Chinese"*. Na realidade o código suporta **18 línguas** — o que faltavam eram os ficheiros de tradução para essas línguas. O **freeze em si** vinha do indexador frágil.
+
+### ✅ Fix aplicado (`KmyTarkovConfiguration/Models/SettingsModel.cs`)
+
+O método `SwitchLanguageFromGame` foi alterado para:
+- **Normalizar** a língua do jogo (lowercase, trim, cortar para 2 letras: `"Portuguese" → "pt"`)
+- Usar **`TryGetValue`** em vez de indexação direta (nunca lança exceção)
+- **Fallback para `"En"`** se a língua não for encontrada
+
+Isto resolve o freeze para **TODAS as línguas**, não só Português.
+
+---
+
+## 📦 O que há neste repo
+
+```
+KmyTarkovApi-SPT4.0.13-FixLang/
+├── KmyTarkovApi/              # Source (patched)
+├── KmyTarkovConfiguration/    # Source (patched — contém o fix)
+├── KmyTarkovReflection/       # Source
+├── KmyTarkovUtils/            # Source
+├── ConfigurationTest/         # Source (projeto de teste)
+├── KmyTarkovApi.sln          # Solution do Visual Studio
+├── LICENSE                   # GPL-3.0 (do original)
+├── PATCH_SwitchLanguageFromGame.txt   # O diff exato do fix
+└── Build/
+    └── kmyuhkyuk-KmyTarkovApi/        # ✅ Pasta do mod pronta a instalar
+        ├── KmyTarkovApi.dll            (1.5.0, patched)
+        ├── KmyTarkovConfiguration.dll  (1.5.0, patched)
+        ├── KmyTarkovReflection.dll
+        ├── KmyTarkovUtils.dll
+        ├── Crc32.NET.dll               (dependência)
+        ├── HtmlAgilityPack.dll         (dependência)
+        ├── localized/  (en.json, zh.json)
+        ├── bundles/    (kmytarkovconfiguration.bundle)
+        └── README.md
+```
+
+---
+
+## 🚀 Instalação
+
+1. Fecha o jogo e o **SPT.Server**.
+2. Copia a pasta `kmyuhkyuk-KmyTarkovApi` de dentro de `Build/` para:
+   ```
+   <pasta do SPT>\BepInEx\plugins\
+   ```
+   Resultado: `<pasta do SPT>\BepInEx\plugins\kmyuhkyuk-KmyTarkovApi\...`
+3. Se já tiveres uma versão antiga, substitui (ou apaga a antiga primeiro).
+4. Arranca o **SPT.Server** e o jogo normalmente.
+
+---
+
+## 📝 Notas
+
+- Não precisas do GamePanelHUD para este mod funcionar, mas se o usares, mantém a **v3.4.0** (compatível com 1.5.0).
+- A UI do mod aparece em **inglês por defeito** (só há traduções `en`/`zh` embutidas). Para mudar a língua da UI do mod: **F12 → configurações do KmyTarkovApi → Language**.
+- Compilado com **Visual Studio Build Tools 2022** (MSBuild 17) + **.NET Framework 4.7.2 Targeting Pack**. Sem strong-name signing.
+- **Licença:** GPL-3.0 (herdada do projeto original). Esta build é distribuída sob os mesmos termos.
+
+---
+
+## 🙏 Créditos
+
+- **Mod e framework original:** [kmyuhkyuk](https://github.com/kmyuhkyuk/KmyTarkovApi) — *todo o crédito para o autor*
+- **Fix de freeze (PT e outras línguas):** aplicado manualmente nesta build (não pelo autor original)
