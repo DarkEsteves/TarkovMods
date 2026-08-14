@@ -1,5 +1,5 @@
 // ============================================================
-// PATCH para KmyTarkovConfiguration - SettingsModel.cs
+// PT: PATCH para KmyTarkovConfiguration - SettingsModel.cs
 // Problema: SwitchLanguageFromGame() faz indexacao direta
 //   LocalizedHelper.CurrentLanguage = LocalizedHelper.LanguageNamesDictionary[gameLanguage];
 // que lança KeyNotFoundException quando a lingua do EFT nao vem
@@ -8,10 +8,21 @@
 //
 // Correcao: usar TryGetValue com fallback para "En", e normalizar
 // o gameLanguage (lowercase + cortar a 2 letras) antes de procurar.
+//
+// EN: PATCH for KmyTarkovConfiguration - SettingsModel.cs
+// Problem: SwitchLanguageFromGame() does a direct dictionary lookup
+//   LocalizedHelper.CurrentLanguage = LocalizedHelper.LanguageNamesDictionary[gameLanguage];
+// which throws KeyNotFoundException when the EFT language is not in
+// exact 2-letter format (e.g. "Portuguese" instead of "pt"),
+// causing the game to freeze during loading (before the main menu).
+//
+// Fix: use TryGetValue with an "En" fallback, and normalize
+// gameLanguage (lowercase + truncate to 2 letters) before lookup.
 // ============================================================
 
-// ---------- ANTES (SettingsModel.cs linhas 81-92) ----------
-//
+// ---------- PT: ANTES (SettingsModel.cs linhas 81-92) ----------
+// ---------- EN: BEFORE (SettingsModel.cs lines 81-92) ----------
+
 // private static void SwitchLanguageFromGame(string gameLanguage)
 // {
 //     switch (gameLanguage)
@@ -25,7 +36,8 @@
 //     }
 // }
 
-// ---------- DEPOIS (corrigido) ----------
+// ---------- PT: DEPOIS (corrigido / aplicado) ----------
+// ---------- EN: AFTER (fixed / applied) ----------
 private static void SwitchLanguageFromGame(string gameLanguage)
 {
     if (string.IsNullOrEmpty(gameLanguage))
@@ -34,26 +46,23 @@ private static void SwitchLanguageFromGame(string gameLanguage)
         return;
     }
 
-    // Normaliza para lowercase e corta a 2 letras (ex: "Portuguese" -> "pt", "en" -> "en")
-    var normalized = gameLanguage.ToLowerInvariant();
+    // PT: Normaliza para lowercase e corta a 2 letras (ex: "Portuguese" -> "pt")
+    // EN: Normalize to lowercase and truncate to 2 letters (e.g. "Portuguese" -> "pt")
+    var normalized = gameLanguage.ToLowerInvariant().Trim();
     if (normalized.Length > 2)
         normalized = normalized.Substring(0, 2);
 
     switch (normalized)
     {
         case "ch":
-        case "zh":
             LocalizedHelper.CurrentLanguage = "Zh";
-            return;
-    }
-
-    if (LocalizedHelper.LanguageNamesDictionary.TryGetValue(normalized, out var lang))
-    {
-        LocalizedHelper.CurrentLanguage = lang;
-    }
-    else
-    {
-        // Fallback seguro: ingles (o Localized() ja tem fallback "en" tambem)
-        LocalizedHelper.CurrentLanguage = "En";
+            break;
+        default:
+            // PT: TryGetValue nunca lança excecao; fallback seguro para "En"
+            // EN: TryGetValue never throws; safe fallback to "En"
+            if (!LocalizedHelper.LanguageNamesDictionary.TryGetValue(normalized, out var lang))
+                lang = "En";
+            LocalizedHelper.CurrentLanguage = lang;
+            break;
     }
 }
