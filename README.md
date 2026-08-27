@@ -10,12 +10,12 @@
 
 | Mod | Version | Original Author | Link | Description |
 |-----|---------|-----------------|------|-------------|
-| **AmmoClarity** | 1.0.1 | Jehree | [original](https://github.com/Jehree/AmmoClarity) | Shortens ammo names + adds caliber info |
-| **AmmoStats** | 1.3.2 | Mattdokn | [original](https://github.com/Mattdokn/AmmoStats) | Shows pen/damage stats in ammo names |
+| **AmmoClarity** | 1.0.1-SPT.4.0.13 | Jehree | [original](https://github.com/Jehree/AmmoClarity) | Shortens ammo names + adds caliber info |
+| **AmmoStats** | 1.3.2-SPT.4.0.13 | Mattdokn | [original](https://github.com/Mattdokn/AmmoStats) | Shows pen/damage stats in ammo names |
 | **HideoutCat** | 1.1.1-SPT.4.0.13 | bushtail | [original](https://github.com/bushtail/spt-hideoutcat) | Cat companion for your hideout |
-| **DayTimeCultists** | 1.2.0 | p-kossa | [original](https://github.com/p-kossa/SPT_DayTimeCultists) | Cultists only spawn at night |
-| **KmyTarkovApi** | 1.5.0 | kmyuhkyuk | [original](https://github.com/kmyuhkyuk/KmyTarkovApi) | Tarkov API freeze fix (multi-lang) |
-| **SPTMiniLauncher** | 3.9 | Devraccoon | [original](https://github.com/minihazel/SPTMiniLauncher) | Mini launcher for SPT |
+| **DayTimeCultists** | 1.2.0-SPT.4.0.13 | p-kossa | [original](https://github.com/p-kossa/SPT_DayTimeCultists) | Cultists only spawn at night |
+| **KmyTarkovApi** | 1.5.0-SPT.4.0.13 | kmyuhkyuk | [original](https://github.com/kmyuhkyuk/KmyTarkovApi) | Tarkov API freeze fix (multi-lang) |
+| **SPTMiniLauncher** | 3.9-SPT.4.0.13 | Devraccoon | [original](https://github.com/minihazel/SPTMiniLauncher) | Mini launcher for SPT |
 
 ---
 
@@ -30,38 +30,38 @@
 ## 📦 Releases
 
 ### AmmoClarity
-- **v1.0.1** — [Download](releases/latest/download/AmmoClarity-SPT4.0.13-LangFix.zip)
+- **v1.0.1-SPT.4.0.13** — [Download](releases/latest/download/AmmoClarity-SPT4.0.13-LangFix.zip)
 - **Original:** [Jehree/AmmoClarity](https://github.com/Jehree/AmmoClarity)
 - **Fixes:** Now works with all game languages (PT, EN, etc.)
-- **Source:** [AmmoClarity/](AmmoClarity/)
+- **Source:** [AmmoClarity-SPT.4.0.13/](AmmoClarity-SPT.4.0.13/)
 
 ### AmmoStats
-- **v1.3.2** — [Download](releases/latest/download/AmmoStats-1.3.1.zip)
+- **v1.3.2-SPT.4.0.13** — [Download](releases/latest/download/AmmoStats-1.3.1.zip)
 - **Original:** [Mattdokn/AmmoStats](https://github.com/Mattdokn/AmmoStats)
 - **Fixes:** Multi-lang support, `InfoBeforeName` config fix, locale crash fix
-- **Source:** [AmmoStats/](AmmoStats/)
+- **Source:** [AmmoStats-SPT.4.0.13/](AmmoStats-SPT.4.0.13/)
 
 ### HideoutCat
 - **v1.1.1-SPT.4.0.13** — [Download](releases/latest/download/HideOutCat.SPT4.0.13.zip)
 - **Original:** [bushtail/spt-hideoutcat](https://github.com/bushtail/spt-hideoutcat)
 - **Fixes:** Full 4.0.13 port, audio sync, collision fixes, anti-stuck, F12 menu
-- **Source:** [HideoutCat-SPT4.0.13/](HideoutCat-SPT4.0.13/)
+- **Source:** [HideoutCat-SPT.4.0.13/](HideoutCat-SPT.4.0.13/)
 
 ### DayTimeCultists
-- **v1.2.0** — [Download](releases/latest/download/DayTimeCultists-v1.2.0.zip)
+- **v1.2.0-SPT.4.0.13** — [Download](releases/latest/download/DayTimeCultists-v1.2.0.zip)
 - **Original:** [p-kossa/SPT_DayTimeCultists](https://github.com/p-kossa/SPT_DayTimeCultists)
 - **Features:** Night-only cultist spawns, configurable hours
-- **Source:** [DayTimeCultists-SPT4.0.13/](DayTimeCultists-SPT4.0.13/)
+- **Source:** [DayTimeCultists-SPT.4.0.13/](DayTimeCultists-SPT.4.0.13/)
 
 ### KmyTarkovApi
-- **v1.5.0** — Freeze fix for non-English languages
+- **v1.5.0-SPT.4.0.13** — Freeze fix for non-English languages
 - **Original:** [kmyuhkyuk/KmyTarkovApi](https://github.com/kmyuhkyuk/KmyTarkovApi)
-- **Source:** [KmyTarkovApi-SPT4.0.13-FixLang/](KmyTarkovApi-SPT4.0.13-FixLang/)
+- **Source:** [KmyTarkovApi-SPT.4.0.13-FixLang/](KmyTarkovApi-SPT.4.0.13-FixLang/)
 
 ### SPTMiniLauncher
-- **v3.9** — Mini launcher for SPT 4.0.13
+- **v3.9-SPT.4.0.13** — Mini launcher for SPT 4.0.13
 - **Original:** [Devraccoon](https://forge-alt.katrinfoxvr.com/users/Devraccoon) / [minihazel/SPTMiniLauncher](https://github.com/minihazel/SPTMiniLauncher)
-- **Source:** [SPTMiniLauncher-SPT4.0.13/](SPTMiniLauncher-SPT4.0.13/)
+- **Source:** [SPTMiniLauncher-SPT.4.0.13/](SPTMiniLauncher-SPT.4.0.13/)
 
 ---
 
