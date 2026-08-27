@@ -33,13 +33,13 @@
 - **v1.0.1-SPT.4.0.13-FixLang** — [Download](releases/latest/download/AmmoClarity-SPT4.0.13-LangFix.zip)
 - **Original:** [Jehree/AmmoClarity](https://github.com/Jehree/AmmoClarity)
 - **Fixes:** Now works with all game languages (PT, EN, etc.)
-- **Source:** [AmmoClarity-SPT.4.0.13/](AmmoClarity-SPT.4.0.13/)
+- **Source:** [AmmoClarity-SPT.4.0.13-FixLang/](AmmoClarity-SPT.4.0.13-FixLang/)
 
 ### AmmoStats
 - **v1.3.2-SPT.4.0.13-FixLang** — [Download](releases/latest/download/AmmoStats-1.3.1.zip)
 - **Original:** [Mattdokn/AmmoStats](https://github.com/Mattdokn/AmmoStats)
 - **Fixes:** Multi-lang support, `InfoBeforeName` config fix, locale crash fix
-- **Source:** [AmmoStats-SPT.4.0.13/](AmmoStats-SPT.4.0.13/)
+- **Source:** [AmmoStats-SPT.4.0.13-FixLang/](AmmoStats-SPT.4.0.13-FixLang/)
 
 ### HideoutCat
 - **v1.1.1-SPT.4.0.13** — [Download](releases/latest/download/HideOutCat.SPT4.0.13.zip)
