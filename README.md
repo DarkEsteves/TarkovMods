@@ -10,8 +10,8 @@
 
 | Mod | Version | Original Author | Link | Description |
 |-----|---------|-----------------|------|-------------|
-| **AmmoClarity** | 1.0.1-SPT.4.0.13 | Jehree | [original](https://github.com/Jehree/AmmoClarity) | Shortens ammo names + adds caliber info |
-| **AmmoStats** | 1.3.2-SPT.4.0.13 | Mattdokn | [original](https://github.com/Mattdokn/AmmoStats) | Shows pen/damage stats in ammo names |
+| **AmmoClarity** | 1.0.1-SPT.4.0.13-FixLang | Jehree | [original](https://github.com/Jehree/AmmoClarity) | Shortens ammo names + adds caliber info |
+| **AmmoStats** | 1.3.2-SPT.4.0.13-FixLang | Mattdokn | [original](https://github.com/Mattdokn/AmmoStats) | Shows pen/damage stats in ammo names |
 | **HideoutCat** | 1.1.1-SPT.4.0.13 | bushtail | [original](https://github.com/bushtail/spt-hideoutcat) | Cat companion for your hideout |
 | **DayTimeCultists** | 1.2.0-SPT.4.0.13 | p-kossa | [original](https://github.com/p-kossa/SPT_DayTimeCultists) | Cultists only spawn at night |
 | **KmyTarkovApi** | 1.5.0-SPT.4.0.13 | kmyuhkyuk | [original](https://github.com/kmyuhkyuk/KmyTarkovApi) | Tarkov API freeze fix (multi-lang) |
@@ -30,13 +30,13 @@
 ## 📦 Releases
 
 ### AmmoClarity
-- **v1.0.1-SPT.4.0.13** — [Download](releases/latest/download/AmmoClarity-SPT4.0.13-LangFix.zip)
+- **v1.0.1-SPT.4.0.13-FixLang** — [Download](releases/latest/download/AmmoClarity-SPT4.0.13-LangFix.zip)
 - **Original:** [Jehree/AmmoClarity](https://github.com/Jehree/AmmoClarity)
 - **Fixes:** Now works with all game languages (PT, EN, etc.)
 - **Source:** [AmmoClarity-SPT.4.0.13/](AmmoClarity-SPT.4.0.13/)
 
 ### AmmoStats
-- **v1.3.2-SPT.4.0.13** — [Download](releases/latest/download/AmmoStats-1.3.1.zip)
+- **v1.3.2-SPT.4.0.13-FixLang** — [Download](releases/latest/download/AmmoStats-1.3.1.zip)
 - **Original:** [Mattdokn/AmmoStats](https://github.com/Mattdokn/AmmoStats)
 - **Fixes:** Multi-lang support, `InfoBeforeName` config fix, locale crash fix
 - **Source:** [AmmoStats-SPT.4.0.13/](AmmoStats-SPT.4.0.13/)
