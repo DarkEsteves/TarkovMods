@@ -24,8 +24,12 @@ public class CatGraphTraverser : MonoBehaviour
 
     private float _currentTurnVelocity;
     private float _currentThrustVelocity;
-
     private float _prevDistToDest;
+
+    // Anti-stuck timer - if the cat hasn't moved closer to its destination for too long, abandon it
+    private float _stuckTimer;
+    private Vector3 _lastPosition;
+    private const float STUCK_TIMEOUT = 1.5f;
     private float _jumpUpEndOffset = -0.5f;
 
     private Vector3 Velocity { get; set; }
@@ -87,8 +91,35 @@ public class CatGraphTraverser : MonoBehaviour
 
         if (stillMoving)
         {
+            // Anti-stuck: check if we're making progress toward the destination
+            if (Vector3.Distance(transform.position, _lastPosition) < 0.05f)
+            {
+                _stuckTimer += Time.deltaTime;
+                if (_stuckTimer > STUCK_TIMEOUT)
+                {
+                    Plugin.Log!.LogWarning($"Cat stuck for {STUCK_TIMEOUT}s, recalculating path");
+                    _stuckTimer = 0f;
+                    _lastPosition = transform.position;
+                    // Recalculate path instead of giving up
+                    if (currentPath != null && _currentPathIndex < currentPath.Count)
+                    {
+                        var remainingPath = currentPath.GetRange(_currentPathIndex, currentPath.Count - _currentPathIndex);
+                        currentPath = remainingPath;
+                        _currentPathIndex = 0;
+                    }
+                    return;
+                }
+            }
+            else
+            {
+                _stuckTimer = 0f;
+            }
+            _lastPosition = transform.position;
+
             return;
         }
+
+        _stuckTimer = 0f;
 
         _currentNode = node;
 
@@ -155,6 +186,12 @@ public class CatGraphTraverser : MonoBehaviour
     // Snap to whatever surface is actually beneath/around the cat so it never clips through.
     private void GroundSnap()
     {
+        // Don't snap if we're currently pathfinding — let Locomotion handle Y
+        if (currentPath != null && currentPath.Count > 0 && _currentPathIndex < currentPath.Count)
+        {
+            return;
+        }
+
         const int mask = ~0; // any solid geometry
         var origin = transform.position + Vector3.up * 0.3f;
 
@@ -164,7 +201,11 @@ public class CatGraphTraverser : MonoBehaviour
             var y = hit.point.y;
             if (Mathf.Abs(transform.position.y - y) > 0.05f)
             {
-                transform.SetPositionIndividualAxis(null, Mathf.Lerp(transform.position.y, y, Time.deltaTime * 10f));
+                // Only snap if the surface is within a reasonable distance (prevent teleporting through floors)
+                if (hit.distance < 1.5f)
+                {
+                    transform.SetPositionIndividualAxis(null, Mathf.Lerp(transform.position.y, y, Time.deltaTime * 10f));
+                }
             }
 
             // Also push horizontally out of walls: raycast forward at body height
@@ -262,9 +303,13 @@ public class CatGraphTraverser : MonoBehaviour
 
         var thrust = ComputeThrust(node, angle, dist) * (Plugin.WalkSpeed != null ? Plugin.WalkSpeed.Value : 1f);
 
+        // Ground check - prevent falling through objects
+        var targetY = GetGroundHeightBelow(transform.position);
+        var finalY = Mathf.Lerp(transform.position.y, targetY, Time.deltaTime * 3f);
+        
         transform.SetPositionIndividualAxis(
             null,
-            Mathf.Lerp(transform.position.y, targetPos.y, Time.deltaTime * 3f)
+            finalY
         );
 
         if (_currentPathIndex == currentPath.Count - 1 && dist < 0.1f)
@@ -276,8 +321,111 @@ public class CatGraphTraverser : MonoBehaviour
             thrust = 0f;
         }
 
+        // Obstacle avoidance - disabled for now as it causes issues
+        // var obstacleDir = AvoidObstacles(dir);
+        // if (obstacleDir != dir)
+        // {
+        //     var avoidAngle = Vector3.SignedAngle(transform.forward, obstacleDir, Vector3.up);
+        //     turn = avoidAngle.RemapClamped(-40f, 40f, -1f, 1f);
+        //     thrust *= 1.5f;
+        // }
+
         TickMovement(thrust, turn);
         _prevDistToDest = dist;
+    }
+
+    /// <summary>
+    /// Gets the ground height below the cat using raycasts.
+    /// Prevents the cat from falling through objects like tables.
+    /// </summary>
+    private float GetGroundHeightBelow(Vector3 position)
+    {
+        var origin = position + Vector3.up * 0.5f;
+        
+        // Check for ground below
+        if (Physics.Raycast(origin, Vector3.down, out var hit, 3f, ~0, QueryTriggerInteraction.Ignore))
+        {
+            return hit.point.y;
+        }
+        
+        // No ground found - return current position to prevent falling
+        return position.y;
+    }
+
+    /// <summary>
+    /// Checks for obstacles ahead and returns a direction to avoid them.
+    /// Tries to climb low objects (chairs) and avoid high objects (walls).
+    /// </summary>
+    private Vector3 AvoidObstacles(Vector3 originalDir)
+    {
+        var origin = transform.position + Vector3.up * 0.15f;
+        var checkDist = 0.5f;
+
+        // Check forward
+        if (Physics.Raycast(origin, originalDir, out var hit, checkDist, ~0, QueryTriggerInteraction.Ignore))
+        {
+            // Check if the obstacle is low enough to climb (like a chair or table)
+            var obstacleTop = hit.point.y + hit.collider.bounds.extents.y;
+            var heightDiff = obstacleTop - transform.position.y;
+            
+            if (heightDiff < 0.6f && heightDiff > -0.1f)
+            {
+                // Low/medium obstacle - try to climb it (jump up)
+                _animator!.SetBool(JumpingUp, true);
+                _animator.Update(0f);
+                return originalDir;
+            }
+            
+            // High obstacle - try to go around
+            // Try left
+            var leftDir = Quaternion.Euler(0, -45, 0) * originalDir;
+            if (!Physics.Raycast(origin, leftDir, checkDist, ~0, QueryTriggerInteraction.Ignore))
+                return leftDir;
+
+            // Try right
+            var rightDir = Quaternion.Euler(0, 45, 0) * originalDir;
+            if (!Physics.Raycast(origin, rightDir, checkDist, ~0, QueryTriggerInteraction.Ignore))
+                return rightDir;
+
+            // Try diagonal left
+            var diagLeft = Quaternion.Euler(0, -90, 0) * originalDir;
+            if (!Physics.Raycast(origin, diagLeft, checkDist, ~0, QueryTriggerInteraction.Ignore))
+                return diagLeft;
+
+            // Try diagonal right
+            var diagRight = Quaternion.Euler(0, 90, 0) * originalDir;
+            if (!Physics.Raycast(origin, diagRight, checkDist, ~0, QueryTriggerInteraction.Ignore))
+                return diagRight;
+        }
+
+        return originalDir;
+    }
+
+    private bool IsObstacleInPath(Vector3 dir)
+    {
+        var origin = transform.position + Vector3.up * 0.15f;
+        var checkDistance = 0.4f;
+
+        // Check forward at body height for obstacles
+        if (Physics.Raycast(origin, dir, out var hit, checkDistance, ~0, QueryTriggerInteraction.Ignore))
+        {
+            // Check if the obstacle is tall enough to block the cat
+            var obstacleTop = hit.point.y + hit.collider.bounds.extents.y;
+            if (obstacleTop > transform.position.y + 0.1f)
+            {
+                return true;
+            }
+        }
+
+        // Check if there's ground beneath the target position (prevent walking off edges)
+        var targetOrigin = transform.position + dir * 0.3f + Vector3.up * 0.5f;
+        if (!Physics.Raycast(targetOrigin, Vector3.down, 1.5f, ~0, QueryTriggerInteraction.Ignore))
+        {
+            // No ground ahead - don't move
+            return true;
+        }
+
+        return false;
     }
 
     private float ComputeThrust(Node node, float angle, float dist)
@@ -387,42 +535,29 @@ public class CatGraphTraverser : MonoBehaviour
         if (currentPath == null || !_animator) { return; }
 
         var node = currentPath[_currentPathIndex];
-        var targetPos = node.position;
+        if (!node.forwardJump) return;
 
-        var info = _animator!.GetCurrentAnimatorStateInfo(0);
-
-        if (info.IsName("JumpForwardStart") || info.IsName("JumpForwardAir"))
+        if (_animator!.GetFloat(Thrust) < 0.1f)
         {
-            var upSpeed = Time.deltaTime * 10f;
-            var forwardSpeed = Time.deltaTime * 2f;
-
-            if (info.IsName("JumpForwardStart"))
-            {
-                var time = info.normalizedTime.RemapClamped(0.75f, 1f, 0f, 1f);
-                upSpeed = Mathf.Lerp(0f, upSpeed, time);
-                forwardSpeed = Mathf.Lerp(0f, forwardSpeed, time);
-            }
-
-            var yDelta = targetPos.y - transform.position.y;
-            upSpeed *= yDelta;
-
-            transform.position += new Vector3(0f, upSpeed, 0f);
-            transform.position += transform.forward * forwardSpeed;
-        }
-
-        var dist = Vector3.Distance(transform.position, targetPos);
-
-        if (dist < 0.2f || dist > _prevDistToDest)
-        {
-            transform.SetPositionIndividualAxis(null, targetPos.y);
-
-            _animator.SetBool(JumpingForward, false);
+            _animator!.SetBool(JumpingForward, false);
             _animator.Update(0f);
-
-            OnJumpAirEnd?.Invoke();
+            return;
         }
 
-        _prevDistToDest = dist;
+        var targetPos = node.position;
+        var t = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
+        if (t < 1f)
+        {
+            var y = Mathf.Lerp(transform.position.y, targetPos.y, Time.deltaTime * 5f);
+            transform.SetPositionIndividualAxis(null, y);
+            transform.position += transform.forward * (Time.deltaTime * 2f);
+        }
+        else
+        {
+            _animator!.SetBool(JumpingForward, false);
+            _animator.Update(0f);
+        }
     }
 
     private void HandleJumpingUp()
@@ -430,106 +565,26 @@ public class CatGraphTraverser : MonoBehaviour
         if (currentPath == null || !_animator) { return; }
 
         var node = currentPath[_currentPathIndex];
-        var targetPos = node.position;
 
-        var info = _animator!.GetCurrentAnimatorStateInfo(0);
-
-        var inAir =
-            (info.IsName("JumpUpStart") && info.normalizedTime > 0.75f) ||
-            info.IsName("JumpUpAir");
-
-        if (!inAir) { return; }
-
-        var upSpeed = Time.deltaTime * 3f;
-        var forwardSpeed = Time.deltaTime;
-
-        transform.position += new Vector3(0f, upSpeed, 0f);
-        transform.position += transform.forward * forwardSpeed;
-
-        if (!(transform.position.y > targetPos.y - 0.7f)) { return; }
-
-        _animator.SetBool(JumpingUp, false);
-        _animator.Update(0f);
-
-        _jumpUpEndOffset = targetPos.y - transform.position.y;
-        OnJumpAirEnd?.Invoke();
+        if (_animator!.GetBool(JumpingUp) && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        {
+            _animator!.SetBool(JumpingUp, false);
+            _animator.Update(0f);
+            transform.position = new Vector3(node.position.x, node.position.y, node.position.z);
+        }
     }
 
     private void HandleJumpingDown()
     {
-        if (!_animator || currentPath == null) { return; }
+        if (currentPath == null || !_animator) { return; }
 
         var node = currentPath[_currentPathIndex];
-        var targetPos = node.position;
 
-        var info = _animator!.GetCurrentAnimatorStateInfo(0);
-
-        if (info.IsName("JumpDownStart") || info.IsName("JumpDownAir"))
+        if (_animator!.GetBool(JumpingDown) && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
-            // 4.0.13 layout differs from the graph: check what is actually beneath him
-            // while falling. If there's solid ground higher than the target node (e.g. a
-            // box placed under the descent path in this version), land on it instead of
-            // falling through into it.
-            if (Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, out var belowHit, 1.2f, ~0, QueryTriggerInteraction.Ignore))
-            {
-                if (belowHit.point.y > targetPos.y + 0.05f && belowHit.distance < 0.6f)
-                {
-                    // Surface right under his feet and above the intended destination:
-                    // treat as landed on top of the obstacle
-                    transform.SetPositionIndividualAxis(null, belowHit.point.y);
-                    _animator.SetBool(JumpingDown, false);
-                    _animator.Update(0f);
-
-                    Plugin.Log!.LogInfo($"[HideoutCat] JumpDown landed early on surface at y={belowHit.point.y:F2} (node wanted {targetPos.y:F2})");
-
-                    if (_currentPathIndex < currentPath.Count - 2)
-                    {
-                        _currentPathIndex++;
-                    }
-
-                    OnJumpAirEnd?.Invoke();
-                    return;
-                }
-            }
-
-            var downSpeed = Time.deltaTime * 3f;
-            var forwardSpeed = Time.deltaTime;
-
-            if (info.IsName("JumpDownStart"))
-            {
-                var t = info.normalizedTime.RemapClamped(0.75f, 1f, 0f, 1f);
-                downSpeed = Mathf.Lerp(0f, downSpeed, t);
-                forwardSpeed = Mathf.Lerp(0f, forwardSpeed, t);
-            }
-            else
-            {
-                downSpeed += info.normalizedTime * Time.deltaTime * 5f;
-            }
-
-            transform.position += new Vector3(0f, -downSpeed, 0f);
-            transform.position += transform.forward * forwardSpeed;
-
-            // Same check after moving: never sink below real ground
-            if (Physics.Raycast(transform.position + Vector3.up * 0.3f, Vector3.down, out var floorHit, 10f, ~0, QueryTriggerInteraction.Ignore))
-            {
-                if (transform.position.y < floorHit.point.y)
-                {
-                    transform.SetPositionIndividualAxis(null, floorHit.point.y);
-                }
-            }
+            _animator!.SetBool(JumpingDown, false);
+            _animator.Update(0f);
+            transform.position = new Vector3(node.position.x, node.position.y, node.position.z);
         }
-
-        if (!(transform.position.y < targetPos.y + 0.02f)) { return; }
-
-        transform.SetPositionIndividualAxis(null, targetPos.y);
-        _animator.SetBool(JumpingDown, false);
-        _animator.Update(0f);
-
-        if (_currentPathIndex < currentPath.Count - 2)
-        {
-            _currentPathIndex++;
-        }
-
-        OnJumpAirEnd?.Invoke();
     }
 }

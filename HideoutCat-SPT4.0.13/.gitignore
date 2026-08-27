@@ -1,0 +1,10 @@
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.dll
+*.pdb
+*.xml
+!0Harmony.xml
+!BepInEx.xml

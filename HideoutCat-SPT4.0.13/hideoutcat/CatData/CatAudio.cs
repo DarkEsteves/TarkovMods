@@ -29,7 +29,22 @@ public class CatAudio : MonoBehaviour
 
         _allClips = BundleLoader.LoadAssetBundle("hideoutcat_audio")!.LoadAllAssets<AudioClip>();
 
-        if (_allClips != null && _allClips.Length != 0) { return; }
+        if (_allClips != null && _allClips.Length != 0)
+        {
+            // Create own audio source immediately so meows always have a source
+            if (_ownSource == null)
+            {
+                _ownSource = gameObject.AddComponent<AudioSource>();
+                _ownSource.playOnAwake = false;
+                _ownSource.spatialBlend = 1f;
+                _ownSource.minDistance = 1f;
+                _ownSource.maxDistance = 10f;
+                _ownSource.rolloffMode = AudioRolloffMode.Linear;
+                _ownSource.priority = 0;
+                _ownSource.loop = false;
+            }
+            return;
+        }
 
         Plugin.Log!.LogError("CatAudio: No audio clips loaded from bundle!");
         enabled = false;
@@ -44,24 +59,13 @@ public class CatAudio : MonoBehaviour
             Debug.LogError("CatAudio: Could not get BetterAudio source.");
         }
 
-        // Own 3D source for meows/purrs — immune to the shared pool being stolen
-        _ownSource = gameObject.AddComponent<AudioSource>();
-        _ownSource.playOnAwake = false;
-        _ownSource.spatialBlend = 1f;
-        _ownSource.minDistance = 1f;
-        _ownSource.maxDistance = 10f;
-        _ownSource.rolloffMode = AudioRolloffMode.Linear;
+        // Own source is created in Start — don't recreate here
     }
 
     private void OnDisable()
     {
-        if (_ownSource)
-        {
-            _ownSource!.Stop();
-            Destroy(_ownSource);
-            _ownSource = null;
-        }
-
+        // NEVER stop _ownSource on state changes — it cuts meows mid-play.
+        // The source persists across states now (created once in OnEnable).
         if (_audioSource)
         {
             _audioSource!.Release();
@@ -70,7 +74,10 @@ public class CatAudio : MonoBehaviour
 
     private void Update()
     {
-        _audioSource!.Position = transform.position;
+        if (_audioSource != null)
+        {
+            _audioSource.Position = transform.position;
+        }
 
         if (Plugin.StepsEnabled != null && !Plugin.StepsEnabled.Value)
         {
@@ -103,9 +110,8 @@ public class CatAudio : MonoBehaviour
     {
         if (_allClips == null) { return; }
 
-        // Sync: the animator transition takes ~0.25s before the mouth actually opens,
-        // so delay the clip slightly to line up with the visual
-        StartCoroutine(MeowDelayed(meowType, 0.25f));
+        // Small delay to sync audio with mouth opening animation
+        StartCoroutine(MeowDelayed(meowType, 0.1f));
     }
 
     private System.Collections.IEnumerator MeowDelayed(EMeowType meowType, float delay)
@@ -278,7 +284,15 @@ public class CatAudio : MonoBehaviour
             if (prefix.StartsWith("cat_meow") || prefix.StartsWith("cat_generic_meow") || prefix.StartsWith("cat_purr"))
             {
                 var vol = Plugin.MeowVolume != null ? Plugin.MeowVolume.Value : 1f;
-                _ownSource!.PlayOneShot(chosen, vol);
+                if (_ownSource != null)
+                {
+                    _ownSource!.PlayOneShot(chosen, vol);
+                }
+                else
+                {
+                    // Fallback: use main audio source
+                    _audioSource!.Play(chosen, null, 0f, vol, false, true);
+                }
             }
             else
             {

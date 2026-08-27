@@ -46,19 +46,19 @@ public class CatLookAt : MonoBehaviour
         _constraintNeck!.bone = _transformNeck;
         _constraintNeck.weight = 0.6f;
         _constraintNeck.RotationOffsetEuler = new Vector3(-15f, 0f, 0f);
-        _constraintNeck.customUpVector = Vector3.up;
+        _constraintNeck.customUpVector = Vector3.zero;  // Use bone's natural up vector
         _constraintNeck.useAngleLimits = true;
-        _constraintNeck.maxAngleLimits = new Vector3(80f, 20f, 20f);
-        _constraintNeck.minAngleLimits = new Vector3(-50f, -20f, -20f);
+        _constraintNeck.maxAngleLimits = new Vector3(45f, 30f, 30f);
+        _constraintNeck.minAngleLimits = new Vector3(-45f, -30f, -30f);
 
         _constraintHead = _boneLookAtHead;
         _constraintHead!.bone = _transformHead;
         _constraintHead.weight = 1f;
         _constraintHead.RotationOffsetEuler = new Vector3(-15f, 0f, 0f);
-        _constraintHead.customUpVector = Vector3.up;
+        _constraintHead.customUpVector = Vector3.zero;  // Use bone's natural up vector
         _constraintHead.useAngleLimits = true;
-        _constraintHead.maxAngleLimits = new Vector3(80f, 20f, 20f);
-        _constraintHead.minAngleLimits = new Vector3(-40f, -20f, -20f);
+        _constraintHead.maxAngleLimits = new Vector3(45f, 30f, 30f);
+        _constraintHead.minAngleLimits = new Vector3(-45f, -30f, -30f);
     }
 
     public void LookAt(Vector3 worldPos)

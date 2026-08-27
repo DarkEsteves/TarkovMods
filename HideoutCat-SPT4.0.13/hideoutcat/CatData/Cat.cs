@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Comfort.Common;
 using EFT;
 using EFT.CameraControl;
@@ -83,19 +84,26 @@ public class Cat : InteractableObject
 
     private void FixedUpdate()
     {
-        _meowCooldown -= Time.fixedDeltaTime;
-
-        if (!_animator || !_owner) { return; }
-
-        _animator!.SetFloat(Random1, Random.value);
-        HandleState();
-        HandlePlayerInteraction();
-        if (_prevState != _currentState)
+        try
         {
-            Plugin.Log!.LogInfo($"New state: {_currentState}");
-            _owner!.InteractionsChangedHandler();
+            _meowCooldown -= Time.fixedDeltaTime;
+
+            if (!_animator || !_owner) { return; }
+
+            _animator!.SetFloat(Random1, Random.value);
+            HandleState();
+            HandlePlayerInteraction();
+            if (_prevState != _currentState)
+            {
+                Plugin.Log!.LogInfo($"New state: {_currentState}");
+                _owner!.InteractionsChangedHandler();
+            }
+            _prevState = _currentState;
         }
-        _prevState = _currentState;
+        catch (Exception ex)
+        {
+            Plugin.Log!.LogError($"FixedUpdate error: {ex.Message}");
+        }
     }
     
     private void OnEnable()
@@ -343,11 +351,7 @@ public class Cat : InteractableObject
     public void Meow()
     {
         if (IsBusy() || Fidgeting) { return; }
-        if (_meowCooldown > 0f) { return; }
-
-        _meowCooldown = 2f;
         _animator!.SetTrigger(Meow1);
-
         _audio!.Meow(DistanceToPlayer() < 5f ? EMeowType.Address : EMeowType.Far);
     }
 
@@ -549,6 +553,10 @@ public class Cat : InteractableObject
         }
     }
 
+    private float _wanderTimer;
+    private string? _lastVisitedAreaType;
+    private int _visitCount;
+
     private void HandleIdleState()
     {
         if (IntervalUtils.RandomShouldOccur(20f))
@@ -563,11 +571,23 @@ public class Cat : InteractableObject
             return;
         }
 
+        // Use slider value for wander frequency
         var wander = Plugin.IdleWanderChance != null ? Plugin.IdleWanderChance.Value : 10f;
-        if (IntervalUtils.RandomShouldOccur(wander))
+        if (ShouldWander(wander))
         {
             GoToRandomArea();
         }
+    }
+
+    private bool ShouldWander(float interval)
+    {
+        _wanderTimer += Time.fixedDeltaTime;
+        if (_wanderTimer >= interval)
+        {
+            _wanderTimer = 0f;
+            return true;
+        }
+        return false;
     }
 
     private void HandleWaitingByDoor()
@@ -672,17 +692,55 @@ public class Cat : InteractableObject
     
     private float DistanceToPlayer()
     {
+        // Use the player's actual position, not the camera (camera can be far from player in third person)
+        var player = Singleton<GameWorld>.Instance?.MainPlayer;
+        if (player != null)
+        {
+            return Vector3.Distance(transform.position, player.Transform.position);
+        }
+        // Fallback to camera position
         return Vector3.Distance(transform.position, GetPlayerCam().position);
+    }
+
+    private bool IsPlayerInDetectionRange(float detectionDistance)
+    {
+        return DistanceToPlayer() < detectionDistance;
+    }
+
+    private bool IsPlayerInFrontOfCat(float fieldOfViewAngle = 120f)
+    {
+        var player = Singleton<GameWorld>.Instance?.MainPlayer;
+        if (player == null) return false;
+
+        var dirToPlayer = (player.Transform.position - transform.position).normalized;
+        dirToPlayer.y = 0f;
+        var angle = Vector3.SignedAngle(transform.forward, dirToPlayer, Vector3.up);
+        return Mathf.Abs(angle) < fieldOfViewAngle * 0.5f;
     }
     
     private void HandlePlayerInteraction()
     {
+        var cam = GetPlayerCam();
+        if (cam == null) return;
+
+        var distance = Vector3.Distance(transform.position, cam.position);
         var proximityDist = Plugin.ProximityMeowDistance != null ? Plugin.ProximityMeowDistance.Value : 5f;
-        var close = DistanceToPlayer() < proximityDist;
+        var close = distance < proximityDist;
         var looking = _lookAt!.IsLookingAtPlayer();
 
+        // Meow when player is close AND cat is looking at player
         if (looking && close && IntervalUtils.RandomShouldOccur(5f)) { Meow(); }
 
+        // Meow when player is close (even if not looking)
+        if (close && IntervalUtils.RandomShouldOccur(10f)) { Meow(); }
+
+        // If player is close, look at them
+        if (close && !looking && IntervalUtils.RandomShouldOccur(8f))
+        {
+            _lookAt.SetLookAtPlayer();
+        }
+
+        // Use slider value for meow frequency
         var meowFreq = Plugin.MeowFrequency != null ? Plugin.MeowFrequency.Value : 65f;
         if (IntervalUtils.RandomShouldOccur(meowFreq)) { Meow(); }
 
@@ -720,6 +778,19 @@ public class Cat : InteractableObject
         return false;
     }
     
+    private float _meowTimer;
+
+    private bool ShouldMeow(float interval)
+    {
+        if (interval <= 0f) return true;
+        _meowTimer += Time.fixedDeltaTime;
+        if (_meowTimer >= interval)
+        {
+            _meowTimer = 0f;
+            return true;
+        }
+        return false;
+    }
     private bool IsPlayerInTheWay()
     {
         if (Singleton<GameWorld>.Instance.MainPlayer.PointOfView > 0) { return false; }
@@ -761,31 +832,38 @@ public class Cat : InteractableObject
     
     private void GoToRandomArea()
     {
-        if (IsBusy() || IsPlayerInTheWay()) { return; }
-
-        var areasDict = Patches.HideoutAwakePatch.GetAreas();
-        if (areasDict == null) { return; }
-
-        var shuffledAreas = new List<HideoutArea>(areasDict.Values);
-        for (var i = shuffledAreas.Count - 1; i > 0; i--)
+        try
         {
-            var j = Random.Range(0, i + 1);
-            (shuffledAreas[i], shuffledAreas[j]) = (shuffledAreas[j], shuffledAreas[i]);
-        }
+            if (IsBusy() || IsPlayerInTheWay()) { return; }
 
-        foreach (var area in shuffledAreas)
+            var areasDict = Patches.HideoutAwakePatch.GetAreas();
+            if (areasDict == null) { return; }
+
+            var shuffledAreas = new List<HideoutArea>(areasDict.Values);
+            for (var i = shuffledAreas.Count - 1; i > 0; i--)
+            {
+                var j = Random.Range(0, i + 1);
+                (shuffledAreas[i], shuffledAreas[j]) = (shuffledAreas[j], shuffledAreas[i]);
+            }
+
+            foreach (var area in shuffledAreas)
+            {
+                var nodes = Plugin.CatGraph!.FindDeadEndNodesByAreaTypeAndLevel(area.AreaTemplate.Type, Plugin.GetAreaLevel(area));
+
+                if (nodes == null || nodes.Count <= 0) { continue; }
+
+                SetTargetArea(area);
+                return;
+            }
+
+            // Fallback: no area gave us nodes — wander to a random waypoint instead
+            LogRandomFallback();
+            GoToClosestWaypoint();
+        }
+        catch (Exception ex)
         {
-            var nodes = Plugin.CatGraph!.FindDeadEndNodesByAreaTypeAndLevel(area.AreaTemplate.Type, Plugin.GetAreaLevel(area));
-
-            if (nodes.Count <= 0) { continue; }
-
-            SetTargetArea(area);
-            return;
+            Plugin.Log!.LogError($"GoToRandomArea error: {ex.Message}");
         }
-
-        // Fallback: no area gave us nodes — wander to a random waypoint instead
-        LogRandomFallback();
-        GoToClosestWaypoint();
     }
 
     private static void LogRandomFallback()

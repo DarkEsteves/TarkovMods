@@ -1,4 +1,4 @@
-# Hideout Cat — SPT 4.0.13 Port (v1.1.2)
+# Hideout Cat — SPT 4.0.13 Port
 
 **Original mod:** [bushtail/spt-hideoutcat](https://github.com/bushtail/spt-hideoutcat) by bushtail (v1.1.1, SPT 4.1.x)
 **Port & fixes:** DarkEsteves
@@ -31,7 +31,7 @@ between areas, sits, lies down, sleeps, eats, grooms, meows at you and can be pe
 | 6 | **Audio smear** — `BetterSource.Play` on 4.0.13 requires explicit `oneShot: true`; without it footsteps stacked into a dragging noise |
 | 7 | **Footstep timer** — `_stepTimer` is now reset when a step plays (was firing every frame) |
 | 8 | **Meow cutting out** — meows/purrs play on the cat's own `AudioSource` (the shared Character pool gets stolen by player movement sounds) |
-| 9 | **Meow/mouth sync** — audio delayed ~0.25 s to line up with the animator's mouth opening |
+| 9 | **Meow/mouth sync** — audio delayed ~0.1 s to line up with the animator's mouth opening |
 | 10 | **No-clip through furniture** — the node graph was authored for the 4.1 hideout layout. Added `GroundSnap()` (idle) and landing checks during jumps: raycasts keep the cat on real surfaces, land on top of obstacles instead of falling inside them, and push him out of walls |
 | 11 | **Flashlight eye reaction disabled** — 4.0.13 has no accessible `CameraManager.Flashlight`; cosmetic-only loss |
 
@@ -46,7 +46,7 @@ between areas, sits, lies down, sleeps, eats, grooms, meows at you and can be pe
 ### Install
 
 1. Download the latest release (or build below)
-2. Extract `tarkin-HideoutCat` into `SPT/BepInEx/plugins/`
+2. Extract `HideoutCat` into `SPT/BepInEx/plugins/`
 3. In-game: hideout requires Nutrition Unit 1+ and Heating 1+
 
 ### Build
@@ -77,17 +77,17 @@ senta-se, deita-se, dorme, come, lambe-se, mia-te e aceita festinhos.
 | 2 | **Níveis de área** — `HideoutController.Areas` é um `Dictionary<EAreaType, HideoutArea>`; o nível resolve-se via `Array.IndexOf(AreaLevels, CurrentLevel)` (`Plugin.GetAreaLevel`) em vez do `AreaData.CurrentLevel` inteiro da 4.1 |
 | 3 | **Posição de spawn** — o gato nasce num waypoint "dead-end" de uma área desbloqueada (lógica original restaurada), não parado na origem do prefab |
 | 4 | **Bug de congelação no `IsBusy()`** — a comparação original contava Idle/Sitting/Lying como "ocupado", logo o gato nunca passeava nem miava. Agora só Dormir/Comer/Cagar são ocupados |
-| 5 | **Destino preso** — `_currentTargetArea` é limpo ao chegar, para poder escolher qualquer área outra vez; fallback para o waypoint mais próximo se não haver nós válidos |
+| 5 | **Destino preso** — `_currentTargetArea` é limpo ao chegar, para poder escolher qualquer área outra vez; fallback para o waypoint mais próximo se não houver nós válidos |
 | 6 | **Áudio arrastado** — o `BetterSource.Play` na 4.0.13 exige `oneShot: true` explícito; sem isso os passos empilhavam num barulho contínuo de arrastamento |
 | 7 | **Timer dos passos** — `_stepTimer` agora é reiniciado quando toca um passo (antes disparava todas as frames) |
 | 8 | **Miados cortados** — miados/purrs tocam numa `AudioSource` própria do gato (o pool partilhado Character é roubado pelos sons de movimento do jogador) |
-| 9 | **Sync boca/miado** — áudio atrasado ~0.25 s para coincidir com a abertura da boca no animator |
+| 9 | **Sync boca/miado** — áudio atrasado ~0.1 s para coincidir com a abertura da boca no animator |
 | 10 | **Noclip pelo mobiliário** — o grafo de nós foi feito para o layout do hideout da 4.1. Adicionado `GroundSnap()` (parado) e verificações de aterragem nos saltos: raycasts mantêm o gato em superfícies reais, aterra EM CIMA de obstáculos em vez de cair lá dentro, e empurra-o para fora de paredes |
 | 11 | **Reação aos olhos à lanterna desativada** — a 4.0.13 não expõe `CameraManager.Flashlight`; perda apenas cosmética |
 
 ### Menu de configuração F12 (ao vivo)
 
-- **Cat** — Coat (Grey/Black/Orange/White/Brown/Bicolor), Eye Colour — *aplica instantâneo*
+- **Cat** — Coat (Grey/Black/Orange/White/Brown/Bicolor), Eye Colour — *aplica instantaneamente*
 - **Audio** — Meow Volume, Step Volume, Footsteps Enabled
 - **Behavior** — Meow Frequency, Proximity Meow Distance
 - **Movement** — Walk Speed Multiplier, Wander Frequency
@@ -96,7 +96,7 @@ senta-se, deita-se, dorme, come, lambe-se, mia-te e aceita festinhos.
 ### Instalação
 
 1. Descarrega a última release (ou compila abaixo)
-2. Extrai `tarkin-HideoutCat` para `SPT/BepInEx/plugins/`
+2. Extract `HideoutCat` into `SPT/BepInEx/plugins/`
 3. No jogo: o hideout precisa de Unidade de Nutrição 1+ e Aquecimento 1+
 
 ### Compilar
