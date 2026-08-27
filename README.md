@@ -22,7 +22,7 @@
 ## 🔧 Installation
 
 1. Download the release `.zip` for the mod you want
-2. Extract into `SPT/BepInEx/plugins/`
+2. Extract into `SPT/`
 3. Launch SPT
 
 ---
