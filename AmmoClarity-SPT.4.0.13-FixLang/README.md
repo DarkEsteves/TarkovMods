@@ -14,3 +14,7 @@
     * in Replace field, enter your new mod name
     * click Replace All in bottom right, click yes if prompted
 8. Update Metdata.cs file with correct metadata for your mod
+
+---
+
+🌐 [**Versão PT**](index.html) | [English Version](README.md)

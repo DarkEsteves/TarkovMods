@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmmoStats-SPT.4.0.13-FixLang</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #0d1117; color: #c9d1d9; }
+        h1, h2, h3 { color: #58a6ff; }
+        a { color: #58a6ff; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 3px; }
+        pre { background: #161b22; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #30363d; margin: 0; padding-left: 16px; color: #8b949e; }
+        hr { border: 1px solid #21262d; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #30363d; padding: 8px 12px; text-align: left; }
+        th { background: #161b22; }
+        .lang-toggle { position: fixed; top: 20px; right: 20px; background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 8px 16px; cursor: pointer; color: #c9d1d9; font-size: 14px; }
+        .lang-toggle:hover { background: #30363d; }
+        .pt { display: none; }
+    </style>
+</head>
+<body>
+    <button class="lang-toggle" onclick="toggleLang()">Versão PT</button>
+    <div id="en-content">
+        # AmmoStats — SPT Mod
+
+**Version:** 1.3.2
+**Author:** Mattdokn (original)
+**SPT Version:** 4.0.x
+**License:** MIT
+
+---
+
+
+AmmoStats displays ammunition penetration and damage stats directly in the item name, making it easier to compare ammo types without opening the inspection window.
+
+### Features
+
+- Shows **penetration/damage** (or damage/penetration) in ammo names
+- Configurable position: before or after the item name
+- Optional parentheses around the stats
+- Zero-padding for better sorting on the flea market
+- Works with **all languages** (not just English)
+- Supports all ammo types: bullets, buckshot, and grenades
+- Supports ammo boxes (shows the stats of the contained ammo)
+
+### Configuration (`config.json`)
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `ShowPenBeforeDmg` | `true` | Show penetration before damage (`false` = damage first) |
+| `InfoBeforeName` | `true` | Place stats before the item name (`false` = after) |
+| `InfoInParenthesis` | `true` | Wrap stats in parentheses |
+| `PaddingLength` | `2` | Zero-padding length (set to `0` to disable) |
+
+### Changelog
+
+#### 1.3.2 (DarkEsteves)
+- **Fix:** Now works with all game languages (PT, EN, etc.) — the original only modified the English locale
+- **Fix:** `InfoBeforeName` config now works correctly (was being ignored)
+- **Fix:** No longer crashes if a locale doesn't have a specific item entry
+- Updated build target to SPT 4.0.13
+
+#### 1.3.1 (Mattdokn)
+- Attempted to fix locale issue but introduced new bugs
+
+#### 1.3.0 (Mattdokn)
+- Initial SPT 4.0.x release
+
+---
+
+    </div>
+    <div id="pt-content" class="pt">
+        
+O AmmoStats mostra os estatísticas de penetração e dano da munição diretamente no nome do item, facilitando a comparação de tipos de munição sem abrir a janela de inspeção.
+
+### Funcionalidades
+
+- Mostra **penetração/dano** (ou dano/penetração) nas nomes das munições
+- Posição configurável: antes ou depois do nome do item
+- Parênteses opcionais à volta das estatísticas
+- Preenchimento com zeros para melhor ordenação no flea market
+- Funciona com **todos os idiomas** (não só Inglês)
+- Suporta todos os tipos de munição: balas, buckshot e granadas
+- Suporta caixas de munição (mostra as estatísticas da munição contida)
+
+### Configuração (`config.json`)
+
+| Defeito | Padrão | Descrição |
+|---------|---------|-------------|
+| `ShowPenBeforeDmg` | `true` | Mostrar penetração antes do dano (`false` = dano primeiro) |
+| `InfoBeforeName` | `true` | Colocar estatísticas antes do nome do item (`false` = depois) |
+| `InfoInParenthesis` | `true` | Envolver estatísticas em parênteses |
+| `PaddingLength` | `2` | Comprimento do preenchimento com zeros (por a `0` para desativar) |
+
+### Changelog
+
+#### 1.3.2 (DarkEsteves)
+- **Correção:** Agora funciona com todos os idiomas do jogo (PT, EN, etc.) — o original só modificava o locale Inglês
+- **Correção:** O config `InfoBeforeName` agora funciona corretamente (estava a ser ignorado)
+- **Correção:** Já não crasha se um locale não tiver uma entrada de item específica
+- Atualizado para SPT 4.0.13
+
+#### 1.3.1 (Mattdokn)
+- Tentativa de correção do problema de locale mas introduziu novos bugs
+
+#### 1.3.0 (Mattdokn)
+- Lançamento inicial para SPT 4.0.x
+
+    </div>
+    <script>
+        function toggleLang() {
+            var en = document.getElementById('en-content');
+            var pt = document.getElementById('pt-content');
+            var btn = document.querySelector('.lang-toggle');
+            if (en.style.display === 'none') {
+                en.style.display = 'block';
+                pt.style.display = 'none';
+                btn.textContent = 'Versão PT';
+            } else {
+                en.style.display = 'none';
+                pt.style.display = 'block';
+                btn.textContent = 'English Version';
+            }
+        }
+    </script>
+</body>
+</html>

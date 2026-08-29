@@ -1,4 +1,29 @@
-# 🛠️ KmyTarkovApi — SPT 4.0.13 Fix (PT/Non-EN-ZH Freeze Patch)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KmyTarkovApi-SPT.4.0.13-FixLang</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #0d1117; color: #c9d1d9; }
+        h1, h2, h3 { color: #58a6ff; }
+        a { color: #58a6ff; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 3px; }
+        pre { background: #161b22; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #30363d; margin: 0; padding-left: 16px; color: #8b949e; }
+        hr { border: 1px solid #21262d; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #30363d; padding: 8px 12px; text-align: left; }
+        th { background: #161b22; }
+        .lang-toggle { position: fixed; top: 20px; right: 20px; background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 8px 16px; cursor: pointer; color: #c9d1d9; font-size: 14px; }
+        .lang-toggle:hover { background: #30363d; }
+        .pt { display: none; }
+    </style>
+</head>
+<body>
+    <button class="lang-toggle" onclick="toggleLang()">Versão PT</button>
+    <div id="en-content">
+        # 🛠️ KmyTarkovApi — SPT 4.0.13 Fix (PT/Non-EN-ZH Freeze Patch)
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![SPT](https://img.shields.io/badge/SPT-4.0.13-green.svg)](https://www.sp-tarkov.com/)
@@ -235,6 +260,25 @@ KmyTarkovApi-SPT4.0.13-FixLang/
 - **Mod e framework original:** [kmyuhkyuk](https://github.com/kmyuhkyuk/KmyTarkovApi) — *todo o crédito para o autor*
 - **Fix de freeze (PT e outras línguas):** aplicado manualmente nesta build (não pelo autor original)
 
----
-
-🌐 [**Versão PT**](index.html) | [English Version](README.md)
+    </div>
+    <div id="pt-content" class="pt">
+        
+    </div>
+    <script>
+        function toggleLang() {
+            var en = document.getElementById('en-content');
+            var pt = document.getElementById('pt-content');
+            var btn = document.querySelector('.lang-toggle');
+            if (en.style.display === 'none') {
+                en.style.display = 'block';
+                pt.style.display = 'none';
+                btn.textContent = 'Versão PT';
+            } else {
+                en.style.display = 'none';
+                pt.style.display = 'block';
+                btn.textContent = 'English Version';
+            }
+        }
+    </script>
+</body>
+</html>

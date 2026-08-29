@@ -7,7 +7,6 @@
 
 ---
 
-## EN — Description
 
 AmmoStats displays ammunition penetration and damage stats directly in the item name, making it easier to compare ammo types without opening the inspection window.
 
@@ -46,39 +45,6 @@ AmmoStats displays ammunition penetration and damage stats directly in the item 
 
 ---
 
-## PT — Descrição
+---
 
-O AmmoStats mostra os estatísticas de penetração e dano da munição diretamente no nome do item, facilitando a comparação de tipos de munição sem abrir a janela de inspeção.
-
-### Funcionalidades
-
-- Mostra **penetração/dano** (ou dano/penetração) nas nomes das munições
-- Posição configurável: antes ou depois do nome do item
-- Parênteses opcionais à volta das estatísticas
-- Preenchimento com zeros para melhor ordenação no flea market
-- Funciona com **todos os idiomas** (não só Inglês)
-- Suporta todos os tipos de munição: balas, buckshot e granadas
-- Suporta caixas de munição (mostra as estatísticas da munição contida)
-
-### Configuração (`config.json`)
-
-| Defeito | Padrão | Descrição |
-|---------|---------|-------------|
-| `ShowPenBeforeDmg` | `true` | Mostrar penetração antes do dano (`false` = dano primeiro) |
-| `InfoBeforeName` | `true` | Colocar estatísticas antes do nome do item (`false` = depois) |
-| `InfoInParenthesis` | `true` | Envolver estatísticas em parênteses |
-| `PaddingLength` | `2` | Comprimento do preenchimento com zeros (por a `0` para desativar) |
-
-### Changelog
-
-#### 1.3.2 (DarkEsteves)
-- **Correção:** Agora funciona com todos os idiomas do jogo (PT, EN, etc.) — o original só modificava o locale Inglês
-- **Correção:** O config `InfoBeforeName` agora funciona corretamente (estava a ser ignorado)
-- **Correção:** Já não crasha se um locale não tiver uma entrada de item específica
-- Atualizado para SPT 4.0.13
-
-#### 1.3.1 (Mattdokn)
-- Tentativa de correção do problema de locale mas introduziu novos bugs
-
-#### 1.3.0 (Mattdokn)
-- Lançamento inicial para SPT 4.0.x
+🌐 [**Versão PT**](index.html) | [English Version](README.md)

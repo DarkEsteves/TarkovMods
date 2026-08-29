@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TarkovMods — SPT/EFT Mods Collection</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #0d1117; color: #c9d1d9; }
+        h1, h2, h3 { color: #58a6ff; }
+        a { color: #58a6ff; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 3px; }
+        pre { background: #161b22; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #30363d; margin: 0; padding-left: 16px; color: #8b949e; }
+        hr { border: 1px solid #21262d; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #30363d; padding: 8px 12px; text-align: left; }
+        th { background: #161b22; }
+        .lang-toggle { position: fixed; top: 20px; right: 20px; background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 8px 16px; cursor: pointer; color: #c9d1d9; font-size: 14px; }
+        .lang-toggle:hover { background: #30363d; }
+        .pt { display: none; }
+    </style>
+</head>
+<body>
+    <button class="lang-toggle" onclick="toggleLang()">Versão PT</button>
+    <div id="en-content">
+        <h1>TarkovMods — SPT/EFT Mods Collection</h1>
+        <p><strong>Author:</strong> DarkEsteves</p>
+        <p><strong>SPT Version:</strong> 4.0.13 (EFT 0.16.9)</p>
+        <p><strong>License:</strong> MIT</p>
+        <hr>
+        <h2>📋 Mods Overview</h2>
+        <table>
+            <tr><th>Mod</th><th>Version</th><th>Original Author</th><th>Link</th><th>Description</th></tr>
+            <tr><td><strong>AmmoClarity</strong></td><td>1.0.1-SPT.4.0.13-FixLang</td><td>Jehree</td><td><a href="https://github.com/Jehree/AmmoClarity">original</a></td><td>Shortens ammo names + adds caliber info</td></tr>
+            <tr><td><strong>AmmoStats</strong></td><td>1.3.2-SPT.4.0.13-FixLang</td><td>Mattdokn</td><td><a href="https://github.com/Mattdokn/AmmoStats">original</a></td><td>Shows pen/damage stats in ammo names</td></tr>
+            <tr><td><strong>HideoutCat</strong></td><td>1.1.1-SPT.4.0.13</td><td>tarkin</td><td><a href="https://github.com/tarkin/spt-hideoutcat">original</a></td><td>Cat companion for your hideout</td></tr>
+            <tr><td><strong>DayTimeCultists</strong></td><td>1.2.0-SPT.4.0.13</td><td>p-kossa</td><td><a href="https://github.com/p-kossa/SPT_DayTimeCultists">original</a></td><td>Cultists only spawn at night</td></tr>
+            <tr><td><strong>KmyTarkovApi</strong></td><td>1.5.0-SPT.4.0.13</td><td>kmyuhkyuk</td><td><a href="https://github.com/kmyuhkyuk/KmyTarkovApi">original</a></td><td>Tarkov API freeze fix (multi-lang)</td></tr>
+            <tr><td><strong>SPTMiniLauncher</strong></td><td>3.9-SPT.4.0.13</td><td>Devraccoon</td><td><a href="https://github.com/minihazel/SPTMiniLauncher">original</a></td><td>Mini launcher for SPT</td></tr>
+        </table>
+        <hr>
+        <h2>🔧 Installation</h2>
+        <ol>
+            <li>Download the release <code>.zip</code> for the mod you want</li>
+            <li>Extract into <code>SPT root folder</code></li>
+            <li>Launch SPT</li>
+        </ol>
+        <hr>
+        <h2>📦 Releases</h2>
+        <h3>AmmoClarity</h3>
+        <ul>
+            <li><strong>v1.0.1-SPT.4.0.13-FixLang</strong> — <a href="releases/latest/download/AmmoClarity-SPT4.0.13-LangFix.zip">Download</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/Jehree/AmmoClarity">Jehree/AmmoClarity</a></li>
+            <li><strong>Fixes:</strong> Now works with all game languages (PT, EN, etc.)</li>
+            <li><strong>Source:</strong> <a href="AmmoClarity-SPT.4.0.13-FixLang/">AmmoClarity-SPT.4.0.13-FixLang/</a></li>
+        </ul>
+        <h3>AmmoStats</h3>
+        <ul>
+            <li><strong>v1.3.2-SPT.4.0.13-FixLang</strong> — <a href="releases/latest/download/AmmoStats-1.3.1.zip">Download</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/Mattdokn/AmmoStats">Mattdokn/AmmoStats</a></li>
+            <li><strong>Fixes:</strong> Multi-lang support, <code>InfoBeforeName</code> config fix, locale crash fix</li>
+            <li><strong>Source:</strong> <a href="AmmoStats-SPT.4.0.13-FixLang/">AmmoStats-SPT.4.0.13-FixLang/</a></li>
+        </ul>
+        <h3>HideoutCat</h3>
+        <ul>
+            <li><strong>v1.1.1-SPT.4.0.13</strong> — <a href="releases/latest/download/HideOutCat.SPT4.0.13.zip">Download</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/tarkin/spt-hideoutcat">tarkin/spt-hideoutcat</a></li>
+            <li><strong>Fixes:</strong> Full 4.0.13 port, audio sync, collision fixes, anti-stuck, F12 menu</li>
+            <li><strong>Source:</strong> <a href="HideoutCat-SPT.4.0.13/">HideoutCat-SPT.4.0.13/</a></li>
+        </ul>
+        <h3>DayTimeCultists</h3>
+        <ul>
+            <li><strong>v1.2.0-SPT.4.0.13</strong> — <a href="releases/latest/download/DayTimeCultists-v1.2.0.zip">Download</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/p-kossa/SPT_DayTimeCultists">p-kossa/SPT_DayTimeCultists</a></li>
+            <li><strong>Features:</strong> Night-only cultist spawns, configurable hours</li>
+            <li><strong>Source:</strong> <a href="DayTimeCultists-SPT.4.0.13/">DayTimeCultists-SPT.4.0.13/</a></li>
+        </ul>
+        <h3>KmyTarkovApi</h3>
+        <ul>
+            <li><strong>v1.5.0-SPT.4.0.13</strong> — Freeze fix for non-English languages</li>
+            <li><strong>Original:</strong> <a href="https://github.com/kmyuhkyuk/KmyTarkovApi">kmyuhkyuk/KmyTarkovApi</a></li>
+            <li><strong>Source:</strong> <a href="KmyTarkovApi-SPT.4.0.13-FixLang/">KmyTarkovApi-SPT.4.0.13-FixLang/</a></li>
+        </ul>
+        <h3>SPTMiniLauncher</h3>
+        <ul>
+            <li><strong>v3.9-SPT.4.0.13</strong> — Mini launcher for SPT 4.0.13</li>
+            <li><strong>Original:</strong> <a href="https://github.com/minihazel/SPTMiniLauncher">minihazel/SPTMiniLauncher</a></li>
+            <li><strong>Source:</strong> <a href="SPTMiniLauncher-SPT.4.0.13/">SPTMiniLauncher-SPT.4.0.13/</a></li>
+        </ul>
+        <hr>
+        <h2>🛠️ Building from Source</h2>
+        <pre><code>cd &lt;ModName&gt;
+dotnet build -c Release</code></pre>
+        <p>References resolve against <code>J:\Jogos\SPT-4.0.13</code> by default. Change <code>TarkovDir</code> in the csproj if needed.</p>
+        <hr>
+        <h2>📝 License Notice</h2>
+        <p>This repository contains code from multiple authors with different licenses:</p>
+        <ul>
+            <li><strong>AmmoClarity, AmmoStats, HideoutCat, DayTimeCultists, KmyTarkovApi</strong> — MIT License</li>
+            <li><strong>SPTMiniLauncher</strong> — GPL-3.0 (original author: Devraccoon)</li>
+            <li><strong>My own mods/fixes</strong> — MIT License</li>
+        </ul>
+        <p>Each mod folder retains its original license file. Please respect the original authors' licensing terms.</p>
+        <hr>
+        <h2>📝 Credits</h2>
+        <ul>
+            <li><strong>Jehree</strong> — AmmoClarity original</li>
+            <li><strong>Mattdokn</strong> — AmmoStats original</li>
+            <li><strong>tarkin</strong> — HideoutCat original mod</li>
+            <li><strong>bushtail</strong> — HideoutCat SPT 4.1.x version</li>
+            <li><strong>p-kossa</strong> — DayTimeCultists original</li>
+            <li><strong>kmyuhkyuk</strong> — KmyTarkovApi original</li>
+            <li><strong>Devraccoon</strong> — SPTMiniLauncher original</li>
+            <li><strong>DarkEsteves</strong> — Ports, fixes, and original mods</li>
+        </ul>
+        <hr>
+        <h2>📜 License</h2>
+        <p>MIT License. See <a href="LICENSE">LICENSE</a> for details.</p>
+    </div>
+    <div id="pt-content" class="pt">
+        <h1>TarkovMods — Coleção de Mods SPT/EFT</h1>
+        <p><strong>Autor:</strong> DarkEsteves</p>
+        <p><strong>Versão SPT:</strong> 4.0.13 (EFT 0.16.9)</p>
+        <p><strong>Licença:</strong> MIT</p>
+        <hr>
+        <h2>📋 Visão Geral dos Mods</h2>
+        <table>
+            <tr><th>Mod</th><th>Versão</th><th>Autor Original</th><th>Link</th><th>Descrição</th></tr>
+            <tr><td><strong>AmmoClarity</strong></td><td>1.0.1-SPT.4.0.13-FixLang</td><td>Jehree</td><td><a href="https://github.com/Jehree/AmmoClarity">original</a></td><td>Encurta nomes de munição + adiciona info de calibre</td></tr>
+            <tr><td><strong>AmmoStats</strong></td><td>1.3.2-SPT.4.0.13-FixLang</td><td>Mattdokn</td><td><a href="https://github.com/Mattdokn/AmmoStats">original</a></td><td>Mostra stats de penetração/dano nos nomes das munições</td></tr>
+            <tr><td><strong>HideoutCat</strong></td><td>1.1.1-SPT.4.0.13</td><td>tarkin</td><td><a href="https://github.com/tarkin/spt-hideoutcat">original</a></td><td>Companheiro gato para o teu hideout</td></tr>
+            <tr><td><strong>DayTimeCultists</strong></td><td>1.2.0-SPT.4.0.13</td><td>p-kossa</td><td><a href="https://github.com/p-kossa/SPT_DayTimeCultists">original</a></td><td>Cultistas só aparecem à noite</td></tr>
+            <tr><td><strong>KmyTarkovApi</strong></td><td>1.5.0-SPT.4.0.13</td><td>kmyuhkyuk</td><td><a href="https://github.com/kmyuhkyuk/KmyTarkovApi">original</a></td><td>Fix de freeze da API Tarkov (multi-idioma)</td></tr>
+            <tr><td><strong>SPTMiniLauncher</strong></td><td>3.9-SPT.4.0.13</td><td>Devraccoon</td><td><a href="https://github.com/minihazel/SPTMiniLauncher">original</a></td><td>Mini launcher para SPT</td></tr>
+        </table>
+        <hr>
+        <h2>🔧 Instalação</h2>
+        <ol>
+            <li>Descarrega o <code>.zip</code> da release do mod que queres</li>
+            <li>Extrai para a <code>pasta raiz do SPT</code></li>
+            <li>Inicia o SPT</li>
+        </ol>
+        <hr>
+        <h2>📦 Releases</h2>
+        <h3>AmmoClarity</h3>
+        <ul>
+            <li><strong>v1.0.1-SPT.4.0.13-FixLang</strong> — <a href="releases/latest/download/AmmoClarity-SPT4.0.13-LangFix.zip">Descarregar</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/Jehree/AmmoClarity">Jehree/AmmoClarity</a></li>
+            <li><strong>Correções:</strong> Agora funciona com todos os idiomas do jogo (PT, EN, etc.)</li>
+            <li><strong>Source:</strong> <a href="AmmoClarity-SPT.4.0.13-FixLang/">AmmoClarity-SPT.4.0.13-FixLang/</a></li>
+        </ul>
+        <h3>AmmoStats</h3>
+        <ul>
+            <li><strong>v1.3.2-SPT.4.0.13-FixLang</strong> — <a href="releases/latest/download/AmmoStats-1.3.1.zip">Descarregar</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/Mattdokn/AmmoStats">Mattdokn/AmmoStats</a></li>
+            <li><strong>Correções:</strong> Suporte multi-idioma, fix do config <code>InfoBeforeName</code>, fix de crash de locale</li>
+            <li><strong>Source:</strong> <a href="AmmoStats-SPT.4.0.13-FixLang/">AmmoStats-SPT.4.0.13-FixLang/</a></li>
+        </ul>
+        <h3>HideoutCat</h3>
+        <ul>
+            <li><strong>v1.1.1-SPT.4.0.13</strong> — <a href="releases/latest/download/HideOutCat.SPT4.0.13.zip">Descarregar</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/tarkin/spt-hideoutcat">tarkin/spt-hideoutcat</a></li>
+            <li><strong>Correções:</strong> Port completo para 4.0.13, sync de áudio, fixes de colisão, anti-stuck, menu F12</li>
+            <li><strong>Source:</strong> <a href="HideoutCat-SPT.4.0.13/">HideoutCat-SPT.4.0.13/</a></li>
+        </ul>
+        <h3>DayTimeCultists</h3>
+        <ul>
+            <li><strong>v1.2.0-SPT.4.0.13</strong> — <a href="releases/latest/download/DayTimeCultists-v1.2.0.zip">Descarregar</a></li>
+            <li><strong>Original:</strong> <a href="https://github.com/p-kossa/SPT_DayTimeCultists">p-kossa/SPT_DayTimeCultists</a></li>
+            <li><strong>Funcionalidades:</strong> Cultistas só à noite, horas configuráveis</li>
+            <li><strong>Source:</strong> <a href="DayTimeCultists-SPT.4.0.13/">DayTimeCultists-SPT.4.0.13/</a></li>
+        </ul>
+        <h3>KmyTarkovApi</h3>
+        <ul>
+            <li><strong>v1.5.0-SPT.4.0.13</strong> — Fix de freeze para idiomas não-Ingleses</li>
+            <li><strong>Original:</strong> <a href="https://github.com/kmyuhkyuk/KmyTarkovApi">kmyuhkyuk/KmyTarkovApi</a></li>
+            <li><strong>Source:</strong> <a href="KmyTarkovApi-SPT.4.0.13-FixLang/">KmyTarkovApi-SPT.4.0.13-FixLang/</a></li>
+        </ul>
+        <h3>SPTMiniLauncher</h3>
+        <ul>
+            <li><strong>v3.9-SPT.4.0.13</strong> — Mini launcher para SPT 4.0.13</li>
+            <li><strong>Original:</strong> <a href="https://github.com/minihazel/SPTMiniLauncher">minihazel/SPTMiniLauncher</a></li>
+            <li><strong>Source:</strong> <a href="SPTMiniLauncher-SPT.4.0.13/">SPTMiniLauncher-SPT.4.0.13/</a></li>
+        </ul>
+        <hr>
+        <h2>🛠️ Compilar da Source</h2>
+        <pre><code>cd &lt;ModName&gt;
+dotnet build -c Release</code></pre>
+        <p>As referências apontam para <code>J:\Jogos\SPT-4.0.13</code> por defeito. Muda <code>TarkovDir</code> no csproj se necessário.</p>
+        <hr>
+        <h2>📝 Nota de Licença</h2>
+        <p>Este repositório contém código de múltiplos autores com diferentes licenças:</p>
+        <ul>
+            <li><strong>AmmoClarity, AmmoStats, HideoutCat, DayTimeCultists, KmyTarkovApi</strong> — MIT License</li>
+            <li><strong>SPTMiniLauncher</strong> — GPL-3.0 (autor original: Devraccoon)</li>
+            <li><strong>Os meus próprios mods/correções</strong> — MIT License</li>
+        </ul>
+        <li><strong>Source:</strong> <a href="SPTMiniLauncher-SPT.4.0.13/">SPTMiniLauncher-SPT.4.0.13/</a></li>
+        <hr>
+        <h2>📝 Créditos</h2>
+        <ul>
+            <li><strong>Jehree</strong> — AmmoClarity original</li>
+            <li><strong>Mattdokn</strong> — AmmoStats original</li>
+            <li><strong>tarkin</strong> — HideoutCat mod original</li>
+            <li><strong>bushtail</strong> — HideoutCat versão SPT 4.1.x</li>
+            <li><strong>p-kossa</strong> — DayTimeCultists original</li>
+            <li><strong>kmyuhkyuk</strong> — KmyTarkovApi original</li>
+            <li><strong>Devraccoon</strong> — SPTMiniLauncher original</li>
+            <li><strong>DarkEsteves</strong> — Ports, correções, e mods originais</li>
+        </ul>
+        <hr>
+        <h2>📜 Licença</h2>
+        <p>MIT License. Ver <a href="LICENSE">LICENSE</a> para detalhes.</p>
+    </div>
+    <script>
+        function toggleLang() {
+            var en = document.getElementById('en-content');
+            var pt = document.getElementById('pt-content');
+            var btn = document.querySelector('.lang-toggle');
+            if (en.style.display === 'none') {
+                en.style.display = 'block';
+                pt.style.display = 'none';
+                btn.textContent = 'Versão PT';
+            } else {
+                en.style.display = 'none';
+                pt.style.display = 'block';
+                btn.textContent = 'English Version';
+            }
+        }
+    </script>
+</body>
+</html>

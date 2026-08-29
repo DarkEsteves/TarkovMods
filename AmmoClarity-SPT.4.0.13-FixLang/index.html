@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmmoClarity-SPT.4.0.13-FixLang</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #0d1117; color: #c9d1d9; }
+        h1, h2, h3 { color: #58a6ff; }
+        a { color: #58a6ff; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 3px; }
+        pre { background: #161b22; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #30363d; margin: 0; padding-left: 16px; color: #8b949e; }
+        hr { border: 1px solid #21262d; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #30363d; padding: 8px 12px; text-align: left; }
+        th { background: #161b22; }
+        .lang-toggle { position: fixed; top: 20px; right: 20px; background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 8px 16px; cursor: pointer; color: #c9d1d9; font-size: 14px; }
+        .lang-toggle:hover { background: #30363d; }
+        .pt { display: none; }
+    </style>
+</head>
+<body>
+    <button class="lang-toggle" onclick="toggleLang()">Versão PT</button>
+    <div id="en-content">
+        1. Click the green **Use this template** > **Create a new repository** button at the top right of this page
+2. Use something like GitBash to clone your new repo into a folder on your computer (https://git-scm.com/downloads) or download it manually with **Code > Download ZIP**
+   * Make sure you are cloning **YOUR** new repo, not the example repo itself
+3. Rename the following from _AmmoClarity_ to your new mod name:
+    * Folder the project is in
+    * **.csproj** file
+    * **.sln** file
+4. Open the **.sln** file with a text editor, CTRL+F for _AmmoClarity_ and replace it with your new mod name
+5. Open the **.csproj** file with a text editor, CTRL+F for _AmmoClarity_ and replace it with your new mod name
+6. Open your solution by double clicking your **.sln** file, double click **Plugin.cs**
+7. Press CTRL + Shift + F, click Replace in Files
+    * make sure **Look in** is set to **Entire solution**
+    * in Find field, enter: _AmmoClarity_
+    * in Replace field, enter your new mod name
+    * click Replace All in bottom right, click yes if prompted
+8. Update Metdata.cs file with correct metadata for your mod
+    </div>
+    <div id="pt-content" class="pt">
+        
+    </div>
+    <script>
+        function toggleLang() {
+            var en = document.getElementById('en-content');
+            var pt = document.getElementById('pt-content');
+            var btn = document.querySelector('.lang-toggle');
+            if (en.style.display === 'none') {
+                en.style.display = 'block';
+                pt.style.display = 'none';
+                btn.textContent = 'Versão PT';
+            } else {
+                en.style.display = 'none';
+                pt.style.display = 'block';
+                btn.textContent = 'English Version';
+            }
+        }
+    </script>
+</body>
+</html>

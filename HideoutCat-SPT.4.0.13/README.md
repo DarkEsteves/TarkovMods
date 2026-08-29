@@ -9,7 +9,6 @@
 
 ---
 
-## EN — Description
 
 Full port of the Hideout Cat mod to SPT 4.0.13, with a batch of fixes and a fully
 configurable in-game settings menu (F12). The cat lives in your hideout: wanders
@@ -59,57 +58,6 @@ References resolve against `J:\Jogos\SPT-4.0.13` by default (change `TarkovDir` 
 
 ---
 
-## PT — Descrição
-
-Port completo do mod Hideout Cat para o SPT 4.0.13, com várias correções e um menu
-de configurações no jogo (F12). O gato vive no teu hideout: passeia entre áreas,
-senta-se, deita-se, dorme, come, lambe-se, mia-te e aceita festinhos.
-
-### Requisitos para aparecer
-
-- **Unidade de Nutrição** nível 1+ **E** **Aquecimento** nível 1+
-
-### O que foi corrigido / alterado para a 4.0.13
-
-| # | Correção |
-|---|----------|
-| 1 | **Migração de API** — reconstruído sobre a API estilo 3.11 que ainda existe na 4.0.13: captura da instância do `HideoutController` (não é Singleton), `GetActionsClass.GetAvailableHideoutActions(HideoutPlayerOwner, GInterface177)`, `ActionsReturnClass`/`ActionsTypesClass`, `AreaScreenSubstrate.SelectArea`, `BonusPanel.UpdateView` |
-| 2 | **Níveis de área** — `HideoutController.Areas` é um `Dictionary<EAreaType, HideoutArea>`; o nível resolve-se via `Array.IndexOf(AreaLevels, CurrentLevel)` (`Plugin.GetAreaLevel`) em vez do `AreaData.CurrentLevel` inteiro da 4.1 |
-| 3 | **Posição de spawn** — o gato nasce num waypoint "dead-end" de uma área desbloqueada (lógica original restaurada), não parado na origem do prefab |
-| 4 | **Bug de congelação no `IsBusy()`** — a comparação original contava Idle/Sitting/Lying como "ocupado", logo o gato nunca passeava nem miava. Agora só Dormir/Comer/Cagar são ocupados |
-| 5 | **Destino preso** — `_currentTargetArea` é limpo ao chegar, para poder escolher qualquer área outra vez; fallback para o waypoint mais próximo se não houver nós válidos |
-| 6 | **Áudio arrastado** — o `BetterSource.Play` na 4.0.13 exige `oneShot: true` explícito; sem isso os passos empilhavam num barulho contínuo de arrastamento |
-| 7 | **Timer dos passos** — `_stepTimer` agora é reiniciado quando toca um passo (antes disparava todas as frames) |
-| 8 | **Miados cortados** — miados/purrs tocam numa `AudioSource` própria do gato (o pool partilhado Character é roubado pelos sons de movimento do jogador) |
-| 9 | **Sync boca/miado** — áudio atrasado ~0.1 s para coincidir com a abertura da boca no animator |
-| 10 | **Noclip pelo mobiliário** — o grafo de nós foi feito para o layout do hideout da 4.1. Adicionado `GroundSnap()` (parado) e verificações de aterragem nos saltos: raycasts mantêm o gato em superfícies reais, aterra EM CIMA de obstáculos em vez de cair lá dentro, e empurra-o para fora de paredes |
-| 11 | **Reação aos olhos à lanterna desativada** — a 4.0.13 não expõe `CameraManager.Flashlight`; perda apenas cosmética |
-
-### Menu de configuração F12 (ao vivo)
-
-- **Cat** — Coat (Grey/Black/Orange/White/Brown/Bicolor), Eye Colour — *aplica instantaneamente*
-- **Audio** — Meow Volume, Step Volume, Footsteps Enabled
-- **Behavior** — Meow Frequency, Proximity Meow Distance
-- **Movement** — Walk Speed Multiplier, Wander Frequency
-- **Spawning** — Enable Cat (liga/desliga o gato na hora)
-
-### Instalação
-
-1. Descarrega a última release (ou compila abaixo)
-2. Extract `HideoutCat` into `SPT/BepInEx/plugins/`
-3. No jogo: o hideout precisa de Unidade de Nutrição 1+ e Aquecimento 1+
-
-### Compilar
-
-```
-dotnet build -c Release
-```
-
-As referências apontam para `J:\Jogos\SPT-4.0.13` por defeito (muda `TarkovDir` no csproj).
-
 ---
 
-## Credits / Créditos
-
-- **tarkin** — original mod and asset bundles
-- **bushtail** — SPT 4.1.x version (base for this port)
+🌐 [**Versão PT**](index.html) | [English Version](README.md)

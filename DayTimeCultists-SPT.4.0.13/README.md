@@ -7,7 +7,6 @@
 
 ---
 
-## EN — Description
 
 DayTimeCultists adjusts cultist spawn behavior to only occur during nighttime hours, making the game more realistic and balanced. Cultists will no longer spawn during daylight raids.
 
@@ -37,36 +36,6 @@ Edit the config in `BepInEx/config/com.DayTimeCultists.cfg`:
 
 ---
 
-## PT — Descrição
-
-O DayTimeCultists ajusta o comportamento de spawn dos cultistas para ocorrer apenas durante as horas noturnas, tornando o jogo mais realista e equilibrado. Os cultistas não aparecem durante raids de dia.
-
-### Funcionalidades
-
-- Cultistas só aparecem à noite (horas configuráveis)
-- Janela de spawn configurável (padrão: 21:00 - 06:00)
-- Encontros com cultistas durante o dia removidos
-- Funciona com todos os maps que suportam cultistas
-
-### Configuração
-
-Edita o config em `BepInEx/config/com.DayTimeCultists.cfg`:
-
-| Defeito | Padrão | Descrição |
-|---------|---------|-------------|
-| `Enabled` | `true` | Ativar/desativar o mod |
-| `NightStartHour` | `21` | Hora em que a noite começa (formato 24h) |
-| `NightEndHour` | `6` | Hora em que a noite acaba (formato 24h) |
-
-### Changelog
-
-#### 1.2.0
-- Lançamento inicial para SPT 4.0.13
-- Cultistas só à noite
-- Horas noturnas configuráveis
-
 ---
 
-## Credits / Créditos
-
-- **p-kossa** — ideia e implementação
+🌐 [**Versão PT**](index.html) | [English Version](README.md)
