@@ -1,4 +1,6 @@
-# Hideout Cat — SPT 4.0.13 Port (v1.1.2-SPT.4.0.13)
+# HideoutCat — SPT 4.0.13 Port
+
+![Cat Avatar](cat_avatar.png)
 
 **Original mod:** [bmpq/spt-hideoutcat](https://github.com/bmpq/spt-hideoutcat) by bmpq (v1.0.1, SPT 3.11)
 **4.1.x version:** [bushtail/spt-hideoutcat](https://github.com/bushtail/spt-hideoutcat) by bushtail (v1.1.0 → v1.1.1, SPT 4.1.x)
@@ -6,10 +8,9 @@
 **Target:** SPT 4.0.13 (EFT 0.16.9)
 **License:** MIT (same as original)
 
-![F12 Config Menu](f12_menu.png)
-
 ---
 
+## Description
 
 Full port of the Hideout Cat mod to SPT 4.0.13, with a batch of fixes and a fully
 configurable in-game settings menu (F12). The cat lives in your hideout: wanders
@@ -43,13 +44,20 @@ between areas, sits, lies down, sleeps, eats, grooms, meows at you and can be pe
 - **Movement** — Walk Speed Multiplier, Wander Frequency
 - **Spawning** — Enable Cat (instant remove/spawn toggle)
 
-### Install
+![F12 Config Menu](f12_menu.png)
+
+---
+
+## Installation
 
 1. Download the latest release (or build below)
-2. Extract `HideoutCat` into `SPT/BepInEx/plugins/`
-3. In-game: hideout requires Nutrition Unit 1+ and Heating 1+
+2. **Extract the `HideoutCat` folder into your SPT root folder** (where `SPT.Server.exe` is located)
+3. Launch SPT
+4. In-game: hideout requires Nutrition Unit 1+ and Heating 1+
 
-### Build
+---
+
+## Build
 
 ```
 dotnet build -c Release
@@ -58,10 +66,6 @@ dotnet build -c Release
 References resolve against `J:\Jogos\SPT-4.0.13` by default (change `TarkovDir` in the csproj).
 
 ---
-
----
-
-🌐 [**Versão PT**](index.html) | [English Version](README.md)
 
 ## Credits / Créditos
 
