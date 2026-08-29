@@ -24,7 +24,7 @@ between areas, sits, lies down, sleeps, eats, grooms, meows at you and can be pe
 
 | # | Fix |
 |---|-----|
-| 1 | **API migration** — rebuilt to work with the 4.0.13 game code (the old 4.1 methods no longer exist) |
+| 1 | **API migration** — rebuilt from the 4.1.x version to work with the older 4.0.13 game code (some methods changed between versions) |
 | 2 | **Area levels** — fixed how the cat reads hideout area levels (changed from a simple number to a dictionary lookup) |
 | 3 | **Spawn placement** — cat now spawns at a valid waypoint in an unlocked area, not stuck at the world origin |
 | 4 | **Cat always "busy"** — fixed a bug where the cat never wandered or meowed because it thought it was always busy |
