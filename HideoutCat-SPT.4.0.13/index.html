@@ -41,17 +41,17 @@
         <h3>What was fixed / changed for 4.0.13</h3>
         <table>
             <tr><th>#</th><th>Fix</th></tr>
-            <tr><td>1</td><td><strong>API migration</strong> — rebuilt on the 3.11-style API that still exists in 4.0.13: <code>HideoutController</code> instance capture (not a Singleton), <code>GetActionsClass.GetAvailableHideoutActions(HideoutPlayerOwner, GInterface177)</code>, <code>ActionsReturnClass</code>/<code>ActionsTypesClass</code>, <code>AreaScreenSubstrate.SelectArea</code>, <code>BonusPanel.UpdateView</code></td></tr>
-            <tr><td>2</td><td><strong>Area levels</strong> — <code>HideoutController.Areas</code> is a <code>Dictionary&lt;EAreaType, HideoutArea&gt;</code>; level is resolved via <code>Array.IndexOf(AreaLevels, CurrentLevel)</code> (<code>Plugin.GetAreaLevel</code>) instead of the int <code>AreaData.CurrentLevel</code> from 4.1</td></tr>
-            <tr><td>3</td><td><strong>Spawn placement</strong> — cat now spawns at a dead-end waypoint of an unlocked area (original logic restored), not frozen at the prefab origin</td></tr>
-            <tr><td>4</td><td><strong><code>IsBusy()</code> freeze bug</strong> — upstream comparison counted Idle/Sitting/Lying as "busy", so the cat never wandered or meowed. Now only Sleeping/Eating/Defecating are busy</td></tr>
-            <tr><td>5</td><td><strong>Stuck-target bug</strong> — <code>_currentTargetArea</code> is cleared on arrival so the cat can pick any area again; fallback to closest waypoint if no area nodes exist</td></tr>
-            <tr><td>6</td><td><strong>Audio smear</strong> — <code>BetterSource.Play</code> on 4.0.13 requires explicit <code>oneShot: true</code>; without it footsteps stacked into a dragging noise</td></tr>
-            <tr><td>7</td><td><strong>Footstep timer</strong> — <code>_stepTimer</code> is now reset when a step plays (was firing every frame)</td></tr>
-            <tr><td>8</td><td><strong>Meow cutting out</strong> — meows/purrs play on the cat's own <code>AudioSource</code> (the shared Character pool gets stolen by player movement sounds)</td></tr>
-            <tr><td>9</td><td><strong>Meow/mouth sync</strong> — audio delayed ~0.1 s to line up with the animator's mouth opening</td></tr>
-            <tr><td>10</td><td><strong>No-clip through furniture</strong> — the node graph was authored for the 4.1 hideout layout. Added <code>GroundSnap()</code> (idle) and landing checks during jumps: raycasts keep the cat on real surfaces, land on top of obstacles instead of falling inside them, and push him out of walls</td></tr>
-            <tr><td>11</td><td><strong>Flashlight eye reaction disabled</strong> — 4.0.13 has no accessible <code>CameraManager.Flashlight</code>; cosmetic-only loss</td></tr>
+            <tr><td>1</td><td><strong>API migration</strong> — rebuilt to work with the 4.0.13 game code (the old 4.1 methods no longer exist)</td></tr>
+            <tr><td>2</td><td><strong>Area levels</strong> — fixed how the cat reads hideout area levels (changed from a simple number to a dictionary lookup)</td></tr>
+            <tr><td>3</td><td><strong>Spawn placement</strong> — cat now spawns at a valid waypoint in an unlocked area, not stuck at the world origin</td></tr>
+            <tr><td>4</td><td><strong>Cat always "busy"</strong> — fixed a bug where the cat never wandered or meowed because it thought it was always busy</td></tr>
+            <tr><td>5</td><td><strong>Stuck in place</strong> — cat now properly clears its destination when it arrives, so it can pick a new area to wander to</td></tr>
+            <tr><td>6</td><td><strong>Footstep audio</strong> — fixed footstep sounds dragging/looping (added one-shot playback)</td></tr>
+            <tr><td>7</td><td><strong>Footstep timer</strong> — fixed footsteps firing every frame instead of at proper intervals</td></tr>
+            <tr><td>8</td><td><strong>Meows cut out</strong> — meows now play on their own audio source, so they don't get cut off by player movement sounds</td></tr>
+            <tr><td>9</td><td><strong>Meow/mouth sync</strong> — meow audio is now delayed slightly to match the cat's mouth opening animation</td></tr>
+            <tr><td>10</td><td><strong>Cat clips through furniture</strong> — added ground-snap and landing checks so the cat walks on real surfaces and doesn't fall through objects</td></tr>
+            <tr><td>11</td><td><strong>Flashlight eye reaction</strong> — removed (the 4.0.13 game code no longer supports this feature)</td></tr>
         </table>
         <h3>F12 Configuration menu (live)</h3>
         <ul>
@@ -99,17 +99,17 @@
         <h3>O que foi corrigido / alterado para a 4.0.13</h3>
         <table>
             <tr><th>#</th><th>Correção</th></tr>
-            <tr><td>1</td><td><strong>Migração de API</strong> — reconstruído sobre a API estilo 3.11 que ainda existe na 4.0.13: captura da instância do <code>HideoutController</code> (não é Singleton), <code>GetActionsClass.GetAvailableHideoutActions(HideoutPlayerOwner, GInterface177)</code>, <code>ActionsReturnClass</code>/<code>ActionsTypesClass</code>, <code>AreaScreenSubstrate.SelectArea</code>, <code>BonusPanel.UpdateView</code></td></tr>
-            <tr><td>2</td><td><strong>Níveis de área</strong> — <code>HideoutController.Areas</code> é um <code>Dictionary&lt;EAreaType, HideoutArea&gt;</code>; o nível resolve-se via <code>Array.IndexOf(AreaLevels, CurrentLevel)</code> (<code>Plugin.GetAreaLevel</code>) em vez do <code>AreaData.CurrentLevel</code> inteiro da 4.1</td></tr>
-            <tr><td>3</td><td><strong>Posição de spawn</strong> — o gato nasce num waypoint "dead-end" de uma área desbloqueada (lógica original restaurada), não parado na origem do prefab</td></tr>
-            <tr><td>4</td><td><strong>Bug de congelação no <code>IsBusy()</code></strong> — a comparação original contava Idle/Sitting/Lying como "ocupado", logo o gato nunca passeava nem miava. Agora só Dormir/Comer/Cagar são ocupados</td></tr>
-            <tr><td>5</td><td><strong>Destino preso</strong> — <code>_currentTargetArea</code> é limpo ao chegar, para poder escolher qualquer área outra vez; fallback para o waypoint mais próximo se não haver nós válidos</td></tr>
-            <tr><td>6</td><td><strong>Áudio arrastado</strong> — o <code>BetterSource.Play</code> na 4.0.13 exige <code>oneShot: true</code> explícito; sem isso os passos empilhavam num barulho contínuo de arrastamento</td></tr>
-            <tr><td>7</td><td><strong>Timer dos passos</strong> — <code>_stepTimer</code> agora é reiniciado quando toca um passo (antes disparava todas as frames)</td></tr>
-            <tr><td>8</td><td><strong>Miados cortados</strong> — miados/purrs tocam numa <code>AudioSource</code> própria do gato (o pool partilhado Character é roubado pelos sons de movimento do jogador)</td></tr>
-            <tr><td>9</td><td><strong>Sync boca/miado</strong> — áudio atrasado ~0.1 s para coincidir com a abertura da boca no animator</td></tr>
-            <tr><td>10</td><td><strong>Noclip pelo mobiliário</strong> — o grafo de nós foi feito para o layout do hideout da 4.1. Adicionado <code>GroundSnap()</code> (parado) e verificações de aterragem nos saltos: raycasts mantêm o gato em superfícies reais, aterra EM CIMA de obstáculos em vez de cair lá dentro, e empurra-o para fora de paredes</td></tr>
-            <tr><td>11</td><td><strong>Reação aos olhos à lanterna desativada</strong> — a 4.0.13 não expõe <code>CameraManager.Flashlight</code>; perda apenas cosmética</td></tr>
+            <tr><td>1</td><td><strong>Migração de API</strong> — reconstruído para funcionar com o código do jogo 4.0.13 (os métodos antigos da 4.1 já não existem)</td></tr>
+            <tr><td>2</td><td><strong>Níveis de área</strong> — corrigido a forma como o gato lê os níveis das áreas do hideout (mudou de um número simples para uma pesquisa em dicionário)</td></tr>
+            <tr><td>3</td><td><strong>Posição de spawn</strong> — o gato agora aparece num waypoint válido de uma área desbloqueada, não preso na origem do mundo</td></tr>
+            <tr><td>4</td><td><strong>Gato sempre "ocupado"</strong> — corrigido um bug onde o gato nunca passeava nem miava porque pensava que estava sempre ocupado</td></tr>
+            <tr><td>5</td><td><strong>Preso no lugar</strong> — o gato agora limpa corretamente o seu destino quando chega, para poder escolher uma nova área para passear</td></tr>
+            <tr><td>6</td><td><strong>Áudio dos passos</strong> — corrigido sons de passos a arrastar/em loop (adicionado playback one-shot)</td></tr>
+            <tr><td>7</td><td><strong>Timer dos passos</strong> — corrigido passos a disparar todas as frames em vez de em intervalos adequados</td></tr>
+            <tr><td>8</td><td><strong>Miados cortados</strong> — miados agora tocam numa fonte de áudio própria, para não serem cortados pelos sons de movimento do jogador</td></tr>
+            <tr><td>9</td><td><strong>Sync boca/miado</strong> — o áudio do miado é agora ligeiramente atrasado para coincidir com a animação de abertura da boca do gato</td></tr>
+            <tr><td>10</td><td><strong>Gato atravessa mobiliário</strong> — adicionado ground-snap e verificações de aterragem para o gato andar em superfícies reais e não cair através de objetos</td></tr>
+            <tr><td>11</td><td><strong>Reação dos olhos à lanterna</strong> — removida (o código do jogo 4.0.13 já não suporta esta funcionalidade)</td></tr>
         </table>
         <h3>Menu de configuração F12 (ao vivo)</h3>
         <ul>

@@ -24,17 +24,17 @@ between areas, sits, lies down, sleeps, eats, grooms, meows at you and can be pe
 
 | # | Fix |
 |---|-----|
-| 1 | **API migration** — rebuilt on the 3.11-style API that still exists in 4.0.13: `HideoutController` instance capture (not a Singleton), `GetActionsClass.GetAvailableHideoutActions(HideoutPlayerOwner, GInterface177)`, `ActionsReturnClass`/`ActionsTypesClass`, `AreaScreenSubstrate.SelectArea`, `BonusPanel.UpdateView` |
-| 2 | **Area levels** — `HideoutController.Areas` is a `Dictionary<EAreaType, HideoutArea>`; level is resolved via `Array.IndexOf(AreaLevels, CurrentLevel)` (`Plugin.GetAreaLevel`) instead of the int `AreaData.CurrentLevel` from 4.1 |
-| 3 | **Spawn placement** — cat now spawns at a dead-end waypoint of an unlocked area (original logic restored), not frozen at the prefab origin |
-| 4 | **`IsBusy()` freeze bug** — upstream comparison counted Idle/Sitting/Lying as "busy", so the cat never wandered or meowed. Now only Sleeping/Eating/Defecating are busy |
-| 5 | **Stuck-target bug** — `_currentTargetArea` is cleared on arrival so the cat can pick any area again; fallback to closest waypoint if no area nodes exist |
-| 6 | **Audio smear** — `BetterSource.Play` on 4.0.13 requires explicit `oneShot: true`; without it footsteps stacked into a dragging noise |
-| 7 | **Footstep timer** — `_stepTimer` is now reset when a step plays (was firing every frame) |
-| 8 | **Meow cutting out** — meows/purrs play on the cat's own `AudioSource` (the shared Character pool gets stolen by player movement sounds) |
-| 9 | **Meow/mouth sync** — audio delayed ~0.1 s to line up with the animator's mouth opening |
-| 10 | **No-clip through furniture** — the node graph was authored for the 4.1 hideout layout. Added `GroundSnap()` (idle) and landing checks during jumps: raycasts keep the cat on real surfaces, land on top of obstacles instead of falling inside them, and push him out of walls |
-| 11 | **Flashlight eye reaction disabled** — 4.0.13 has no accessible `CameraManager.Flashlight`; cosmetic-only loss |
+| 1 | **API migration** — rebuilt to work with the 4.0.13 game code (the old 4.1 methods no longer exist) |
+| 2 | **Area levels** — fixed how the cat reads hideout area levels (changed from a simple number to a dictionary lookup) |
+| 3 | **Spawn placement** — cat now spawns at a valid waypoint in an unlocked area, not stuck at the world origin |
+| 4 | **Cat always "busy"** — fixed a bug where the cat never wandered or meowed because it thought it was always busy |
+| 5 | **Stuck in place** — cat now properly clears its destination when it arrives, so it can pick a new area to wander to |
+| 6 | **Footstep audio** — fixed footstep sounds dragging/looping (added one-shot playback) |
+| 7 | **Footstep timer** — fixed footsteps firing every frame instead of at proper intervals |
+| 8 | **Meows cut out** — meows now play on their own audio source, so they don't get cut off by player movement sounds |
+| 9 | **Meow/mouth sync** — meow audio is now delayed slightly to match the cat's mouth opening animation |
+| 10 | **Cat clips through furniture** — added ground-snap and landing checks so the cat walks on real surfaces and doesn't fall through objects |
+| 11 | **Flashlight eye reaction** — removed (the 4.0.13 game code no longer supports this feature) |
 
 ### F12 Configuration menu (live)
 
