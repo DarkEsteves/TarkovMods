@@ -25,6 +25,8 @@ Shortens ammo names and adds caliber info directly in the item name.
 - Now works with all game languages (PT, EN, etc.)
 - Updated for SPT 4.0.13
 
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.0.1-SPT.4.0.13-FixLang-AmmoClarity/AmmoClarity-SPT4.0.13-LangFix.zip)
+
 ---
 
 ## 📊 AmmoStats
@@ -36,6 +38,8 @@ Displays ammunition penetration and damage stats directly in the item name.
 - `InfoBeforeName` config fix
 - Locale crash fix
 - Updated for SPT 4.0.13
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.3.2-SPT.4.0.13-FixLang-AmmoStats/AmmoStats-1.3.1.zip)
 
 ---
 
@@ -54,6 +58,8 @@ Full port of the Hideout Cat mod to SPT 4.0.13, with a batch of fixes and a full
 - Fixed cat clipping through furniture
 - Added F12 configuration menu
 
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.1.2-SPT.4.0.13-HideoutCat/HideOutCat.SPT4.0.13-v1.1.2.zip)
+
 ---
 
 ## 🌙 DayTimeCultists
@@ -64,17 +70,23 @@ Adjusts cultist spawn behavior to only occur during nighttime hours.
 - Night-only cultist spawns
 - Configurable spawn window (default: 21:00 - 06:00)
 
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.2.0-SPT.4.0.13-DayTimeCultists/DayTimeCultists-v1.2.0.zip)
+
 ---
 
 ## 🔧 KmyTarkovApi
 
 Tarkov API freeze fix for non-English languages.
 
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.5.0-SPT4.0.13-FixLang/KmyTarkovApi-SPT4.0.13-FixLang.zip)
+
 ---
 
 ## 🚀 SPTMiniLauncher
 
 Mini launcher for SPT 4.0.13.
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v3.9-SPT-4.0.13/SPTMiniLauncher-SPT4.0.13.zip)
 
 ---
 
