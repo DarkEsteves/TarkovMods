@@ -1,7 +1,8 @@
 # Hideout Cat — SPT 4.0.13 Port
 
-**Original mod:** [tarkin/spt-hideoutcat](https://github.com/tarkin/spt-hideoutcat) by tarkin (v1.1.1, SPT 4.1.x)
-**Port & fixes:** tarkin + bushtail
+**Original mod:** [bmpq/spt-hideoutcat](https://github.com/bmpq/spt-hideoutcat) by bmpq (v1.1.1, SPT 3.11)
+**4.1.x version:** [bushtail/spt-hideoutcat](https://github.com/bushtail/spt-hideoutcat) by bushtail (SPT 4.1.x)
+**Port & fixes:** DarkEsteves
 **Target:** SPT 4.0.13 (EFT 0.16.9)
 **License:** MIT (same as original)
 
@@ -61,3 +62,8 @@ References resolve against `J:\Jogos\SPT-4.0.13` by default (change `TarkovDir` 
 ---
 
 🌐 [**Versão PT**](index.html) | [English Version](README.md)
+
+## Credits / Créditos
+
+- **bmpq** — original mod and asset bundles
+- **bushtail** — SPT 4.1.x version (base for this port)
