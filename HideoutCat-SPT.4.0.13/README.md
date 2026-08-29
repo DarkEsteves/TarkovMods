@@ -1,7 +1,7 @@
-# Hideout Cat — SPT 4.0.13 Port
+# Hideout Cat — SPT 4.0.13 Port (v1.1.2-SPT.4.0.13)
 
-**Original mod:** [bmpq/spt-hideoutcat](https://github.com/bmpq/spt-hideoutcat) by bmpq (v1.1.1, SPT 3.11)
-**4.1.x version:** [bushtail/spt-hideoutcat](https://github.com/bushtail/spt-hideoutcat) by bushtail (SPT 4.1.x)
+**Original mod:** [bmpq/spt-hideoutcat](https://github.com/bmpq/spt-hideoutcat) by bmpq (v1.0.1, SPT 3.11)
+**4.1.x version:** [bushtail/spt-hideoutcat](https://github.com/bushtail/spt-hideoutcat) by bushtail (v1.1.0 → v1.1.1, SPT 4.1.x)
 **Port & fixes:** DarkEsteves
 **Target:** SPT 4.0.13 (EFT 0.16.9)
 **License:** MIT (same as original)
