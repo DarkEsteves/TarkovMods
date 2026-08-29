@@ -12,7 +12,7 @@
 |-----|---------|-----------------|------|-------------|
 | **AmmoClarity** | 1.0.1-SPT.4.0.13-FixLang | Jehree | [original](https://github.com/Jehree/AmmoClarity) | Shortens ammo names + adds caliber info |
 | **AmmoStats** | 1.3.2-SPT.4.0.13-FixLang | Mattdokn | [original](https://github.com/Mattdokn/AmmoStats) | Shows pen/damage stats in ammo names |
-| **HideoutCat** | 1.1.1-SPT.4.0.13 | bushtail | [original](https://github.com/bushtail/spt-hideoutcat) | Cat companion for your hideout |
+|| **HideoutCat** | 1.1.1-SPT.4.0.13 | tarkin | [original](https://github.com/tarkin/spt-hideoutcat) | Cat companion for your hideout |
 | **DayTimeCultists** | 1.2.0-SPT.4.0.13 | p-kossa | [original](https://github.com/p-kossa/SPT_DayTimeCultists) | Cultists only spawn at night |
 | **KmyTarkovApi** | 1.5.0-SPT.4.0.13 | kmyuhkyuk | [original](https://github.com/kmyuhkyuk/KmyTarkovApi) | Tarkov API freeze fix (multi-lang) |
 | **SPTMiniLauncher** | 3.9-SPT.4.0.13 | Devraccoon | [original](https://github.com/minihazel/SPTMiniLauncher) | Mini launcher for SPT |
@@ -43,7 +43,7 @@
 
 ### HideoutCat
 - **v1.1.1-SPT.4.0.13** — [Download](releases/latest/download/HideOutCat.SPT4.0.13.zip)
-- **Original:** [bushtail/spt-hideoutcat](https://github.com/bushtail/spt-hideoutcat)
+- **Original:** [tarkin/spt-hideoutcat](https://github.com/tarkin/spt-hideoutcat)
 - **Fixes:** Full 4.0.13 port, audio sync, collision fixes, anti-stuck, F12 menu
 - **Source:** [HideoutCat-SPT.4.0.13/](HideoutCat-SPT.4.0.13/)
 
@@ -92,7 +92,7 @@ Each mod folder retains its original license file. Please respect the original a
 
 - **Jehree** — AmmoClarity original
 - **Mattdokn** — AmmoStats original
-- **bushtail** — HideoutCat original
+- **tarkin** — HideoutCat original
 - **p-kossa** — DayTimeCultists original
 - **kmyuhkyuk** — KmyTarkovApi original
 - **Devraccoon** — SPTMiniLauncher original

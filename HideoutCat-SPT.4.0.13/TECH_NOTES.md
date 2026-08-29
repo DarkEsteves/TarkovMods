@@ -6,7 +6,7 @@
 
 ## Context
 
-Port of Hideout Cat (bushtail, SPT 4.1.x) to SPT 4.0.13 (EFT 0.16.9). The original project did not compile on 4.0.13 because BSG changed several APIs between versions. The work involved re-targeting method calls to the versions that exist in 4.0.13 and fixing behavioral changes that resulted from those API differences.
+Port of Hideout Cat (tarkin, SPT 4.1.x) to SPT 4.0.13 (EFT 0.16.9). The original project did not compile on 4.0.13 because BSG changed several APIs between versions. The work involved re-targeting method calls to the versions that exist in 4.0.13 and fixing behavioral changes that resulted from those API differences.
 
 ---
 
