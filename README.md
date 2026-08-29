@@ -92,11 +92,12 @@ Each mod folder retains its original license file. Please respect the original a
 
 - **Jehree** — AmmoClarity original
 - **Mattdokn** — AmmoStats original
-- **tarkin** — HideoutCat original
+- **tarkin** — HideoutCat original mod
+- **bushtail** — HideoutCat SPT 4.1.x version
 - **p-kossa** — DayTimeCultists original
 - **kmyuhkyuk** — KmyTarkovApi original
 - **Devraccoon** — SPTMiniLauncher original
-- **DarkEsteves** — Ports, fixes, and original mods
+- **DarkEsteves** — Ports, fixes, and original mods (excluindo HideoutCat)
 
 ---
 

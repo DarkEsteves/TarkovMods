@@ -1,7 +1,7 @@
 # DayTimeCultists — SPT Mod
 
 **Version:** 1.2.0
-**Author:** DarkEsteves
+**Author:** p-kossa (original)
 **SPT Version:** 4.0.13
 **License:** MIT
 
@@ -69,4 +69,4 @@ Edita o config em `BepInEx/config/com.DayTimeCultists.cfg`:
 
 ## Credits / Créditos
 
-- **DarkEsteves** — ideia e implementação
+- **p-kossa** — ideia e implementação

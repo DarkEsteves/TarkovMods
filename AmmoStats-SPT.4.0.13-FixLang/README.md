@@ -1,7 +1,7 @@
 # AmmoStats — SPT Mod
 
 **Version:** 1.3.2
-**Author:** Mattdokn (original) / DarkEsteves (fixes)
+**Author:** Mattdokn (original)
 **SPT Version:** 4.0.x
 **License:** MIT
 

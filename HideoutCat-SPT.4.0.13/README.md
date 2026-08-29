@@ -1,7 +1,7 @@
 # Hideout Cat — SPT 4.0.13 Port
 
 **Original mod:** [tarkin/spt-hideoutcat](https://github.com/tarkin/spt-hideoutcat) by tarkin (v1.1.1, SPT 4.1.x)
-**Port & fixes:** DarkEsteves
+**Port & fixes:** tarkin + bushtail
 **Target:** SPT 4.0.13 (EFT 0.16.9)
 **License:** MIT (same as original)
 
@@ -112,4 +112,4 @@ As referências apontam para `J:\Jogos\SPT-4.0.13` por defeito (muda `TarkovDir`
 ## Credits / Créditos
 
 - **tarkin** — original mod and asset bundles
-- **DarkEsteves** — SPT 4.0.13 port, fixes and config menu
+- **bushtail** — SPT 4.1.x version (base for this port)
