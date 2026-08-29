@@ -97,7 +97,7 @@ Each mod folder retains its original license file. Please respect the original a
 - **p-kossa** — DayTimeCultists original
 - **kmyuhkyuk** — KmyTarkovApi original
 - **Devraccoon** — SPTMiniLauncher original
-- **DarkEsteves** — Ports, fixes, and original mods (excluindo HideoutCat)
+- **DarkEsteves** — Ports, fixes, and original mods
 
 ---
 
