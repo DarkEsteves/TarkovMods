@@ -14,6 +14,9 @@
 | **DayTimeCultists** | 1.2.0 | 4.0.13 | [p-kossa](https://github.com/p-kossa/SPT_DayTimeCultists) | Cultists only spawn at night |
 | **KmyTarkovApi** | 1.5.0-FixLang | 4.0.13 | [kmyuhkyuk](https://github.com/kmyuhkyuk/KmyTarkovApi) | Tarkov API freeze fix (multi-lang) |
 | **SPTMiniLauncher** | 3.9 | 4.0.13 | [Devraccoon](https://github.com/minihazel/SPTMiniLauncher) | Mini launcher for SPT |
+| **CNN-Containers** | v4.4.0 | 4.0.13 | [Cannuccia](https://forge.sp-tarkov.com/user/16896/cannuccia) | Tiered storage containers + barter feature |
+| **ConfigurableInventories** | 1.6.1 | 4.0.13 | [Harmer](https://forge.sp-tarkov.com/user/28568/harmer) | Configure sizes & filters of inventories |
+| **GrenadeIndicator** | 1.0.0 | 4.0.13 | [Solarint](https://github.com/Solarint) | Visual indicator for thrown grenades |
 
 ---
 
@@ -90,6 +93,52 @@ Mini launcher for SPT 4.0.13.
 
 ---
 
+## 📦 CNN-Containers
+
+Tiered storage containers for your hideout traders. This version adds a **configurable barter** feature — sell containers for items instead of money.
+
+**What's new:**
+- **Barter via config** — new `barterItems` field in container config
+- **Multiple items together** — array of items required in a single trade
+- **Any item as payment** — use any item ID (Graphic Card, Wire, CPU, etc.)
+- **Fully optional** — configs without `barterItems` work exactly as before
+
+**Containers:** Recycled Ammo Bag, Recycled FAK, Small Portable Fridge, Small Toolbox, Mod Case, Secure Mapbook, Ruined Wooden Box, Gear Box, Secure Container Onyx
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v4.4.0-SPT.4.0.13-CNN-Containers/CNN-Containers-v4.4.0.zip)
+
+---
+
+## 🎒 ConfigurableInventories
+
+Configure sizes and filters of your backpacks, cases, plate carriers, pockets, rigs, and secure containers.
+
+**What changed:**
+- Full conversion from JavaScript (SPT 3.11+) to C# (SPT 4.0.13)
+- Removed dependencies on removed JS APIs (VFS, etc.)
+- Uses native SPT 4.0.13 APIs (`DatabaseService`, `ModHelper`, `ISptLogger`)
+
+**Categories:** Backpacks, Cases, Plate Carriers, Pockets, Rigs, Secure Containers
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.6.1-SPT.4.0.13-ConfigurableInventories/ConfigurableInventories-1.6.1-SPT.4.0.13.zip)
+
+---
+
+## 💣 GrenadeIndicator
+
+Visual indicator for thrown grenades. Shows a marker and trail for grenades in flight.
+
+**What changed:**
+- Converted from `SPT.Reflection.ModulePatch` (removed in SPT 4.0) to direct Harmony patches
+- New SDK-style `net472` project with direct game DLL references
+- Added proper cleanup with `OnDestroy()` / `UnpatchSelf()`
+
+**Features:** 13 F12 configuration options, customizable colors, trails, sizes
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.0.0-SPT.4.0.13-GrenadeIndicator/GrenadeIndicator-SPT.4.0.13.zip)
+
+---
+
 ## 📦 Installation
 
 1. Download the release `.zip` for the mod you want
@@ -118,6 +167,13 @@ References resolve against `J:\Jogos\SPT-4.0.13` by default. Change `TarkovDir` 
 - **p-kossa** — DayTimeCultists original
 - **kmyuhkyuk** — KmyTarkovApi original
 - **Devraccoon** — SPTMiniLauncher original
+- **Cannuccia** — CNN-Containers original mod
+- **AMightyTank** — CNN-Containers SPT 3.11.X update
+- **MrVibesRSA** — Secure Mapbook mod
+- **Dsnyder** — Container-Onyx (Re-Upload)
+- **Dildz** — CNN-Containers SPT 4.0.X port
+- **Harmer** — ConfigurableInventories original mod
+- **Solarint** — GrenadeIndicator original mod
 - **DarkEsteves** — Ports, fixes, and original mods
 
 ---
