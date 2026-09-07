@@ -1,7 +1,0 @@
-{
-    "tag_name": "v1.0.6-SPT.4.0.13-SamSWAT.FOV",
-    "name": "SamSWAT.FOV v1.0.6 (SPT 4.0.13)",
-    "body": "## What is this?\nPort of SamSWAT's FOV mod to SPT 4.0.13.\n\n## Features\n- FOV clamp customization (min/max)\n- Horizontal/Vertical HUD camera offset\n- F12 ConfigurationManager integration\n\n## Changes for 4.0.13\n- GClass1085 (was GClass1053)\n- HarmonyLib (not Aki.Reflection)\n- New NumberSlider API\n\n## Credits\n- SamSWAT — original mod\n- DarkEsteves — SPT 4.0.13 port",
-    "draft": false,
-    "prerelease": false
-}
