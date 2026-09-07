@@ -19,6 +19,7 @@
 | **GrenadeIndicator** | 1.0.0 | 4.0.13 | [Solarint](https://github.com/Solarint) | Visual indicator for thrown grenades |
 | **SamSWAT.FOV** | 1.0.6 | 4.0.13 | [SamSWAT](https://github.com/SamSWAT) | Custom FOV clamp + camera position adjustment |
 | **SPTVRAMCleaner** | 1.1.0 | 4.0.13 | [Matsix](https://github.com/Matsix/SPTVRAMCleaner) | VRAM/RAM cleaner — auto, periodic & manual |
+| **SPT-RamCleanerInterval** | 1.0.0 | 4.0.13 | [CactusPie](https://github.com/CactusPie) | Customizable RAM cleaner interval (30-900s) |
 
 ---
 
@@ -178,6 +179,20 @@ VRAM/RAM cleaner for SPT 4.0.13. Frees unused memory automatically on raid start
 
 ---
 
+## 🧹 SPT-RamCleanerInterval
+
+Customizable RAM cleaner interval for SPT 4.0.13. Allows you to override the default RAM cleaner execution interval (30-900 seconds), with options to run only in raid and trigger manual cleaning via a button in F12.
+
+**Features:**
+- Custom interval: 30-900 seconds (default: 300)
+- "Clean now" button in F12 menu
+- Only-in-raid toggle
+- Uses `EmptyWorkingSet` Windows API to free memory
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/SPT-RamCleanerInterval-v1.0.0-SPT.4.0.13/SPT-RamCleanerInterval-v1.0.0-SPT.4.0.13.zip)
+
+---
+
 ## 📦 Installation
 
 1. Download the release `.zip` for the mod you want
@@ -215,6 +230,7 @@ References resolve against `J:\Jogos\SPT-4.0.13` by default. Change `TarkovDir` 
 - **Solarint** — GrenadeIndicator original mod
 - **SamSWAT** — SamSWAT.FOV original mod
 - **Matsix** — SPTVRAMCleaner original mod
+- **CactusPie** — SPT-RamCleanerInterval original mod
 - **DarkEsteves** — Ports, fixes, and original mods
 
 ---
