@@ -1,0 +1,24 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.1/",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.1": {},
+    ".NETStandard,Version=v2.1/": {
+      "SPTVRAMCleaner/1.0.4": {
+        "runtime": {
+          "SPTVRAMCleaner.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SPTVRAMCleaner/1.0.4": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

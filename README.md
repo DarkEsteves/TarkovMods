@@ -18,6 +18,7 @@
 | **ConfigurableInventories** | 1.6.1 | 4.0.13 | [Harmer](https://forge.sp-tarkov.com/user/28568/harmer) | Configure sizes & filters of inventories |
 | **GrenadeIndicator** | 1.0.0 | 4.0.13 | [Solarint](https://github.com/Solarint) | Visual indicator for thrown grenades |
 | **SamSWAT.FOV** | 1.0.6 | 4.0.13 | [SamSWAT](https://github.com/SamSWAT) | Custom FOV clamp + camera position adjustment |
+| **SPTVRAMCleaner** | 1.1.0 | 4.0.13 | [Matsix](https://github.com/Matsix/SPTVRAMCleaner) | VRAM/RAM cleaner — auto, periodic & manual |
 
 ---
 
@@ -159,6 +160,24 @@ Customize your FOV (Field of View) beyond normal limits and adjust camera positi
 
 ---
 
+## 🧹 SPTVRAMCleaner
+
+VRAM/RAM cleaner for SPT 4.0.13. Frees unused memory automatically on raid start, raid exit, on a configurable periodic interval, or via a manual hotkey — freeing ~1–2 GB of VRAM.
+
+**Features:**
+- Clean on raid start (after countdown finishes)
+- Clean on raid exit (when world is destroyed)
+- Periodic cleaning during raid (configurable: 1–120 minutes)
+- Manual hotkey (default: `Keypad0`, configurable)
+- Full F12 ConfigurationManager integration
+- Verbose diagnostics option for debugging
+
+**Note:** Expect a small lag spike at the moment of cleaning — this is normal as the game frees memory.
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.1.0-SPT.4.0.13-SPTVRAMCleaner/SPTVRAMCleaner-v1.1.0-SPT.4.0.13.zip)
+
+---
+
 ## 📦 Installation
 
 1. Download the release `.zip` for the mod you want
@@ -195,6 +214,7 @@ References resolve against `J:\Jogos\SPT-4.0.13` by default. Change `TarkovDir` 
 - **Harmer** — ConfigurableInventories original mod
 - **Solarint** — GrenadeIndicator original mod
 - **SamSWAT** — SamSWAT.FOV original mod
+- **Matsix** — SPTVRAMCleaner original mod
 - **DarkEsteves** — Ports, fixes, and original mods
 
 ---
