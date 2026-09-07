@@ -17,6 +17,7 @@
 | **CNN-Containers** | v4.4.0 | 4.0.13 | [Cannuccia](https://forge.sp-tarkov.com/user/16896/cannuccia) | Tiered storage containers + barter feature |
 | **ConfigurableInventories** | 1.6.1 | 4.0.13 | [Harmer](https://forge.sp-tarkov.com/user/28568/harmer) | Configure sizes & filters of inventories |
 | **GrenadeIndicator** | 1.0.0 | 4.0.13 | [Solarint](https://github.com/Solarint) | Visual indicator for thrown grenades |
+| **SamSWAT.FOV** | 1.0.6 | 4.0.13 | [SamSWAT](https://github.com/SamSWAT) | Custom FOV clamp + camera position adjustment |
 
 ---
 
@@ -139,6 +140,25 @@ Visual indicator for thrown grenades. Shows a marker and trail for grenades in f
 
 ---
 
+## 🎯 SamSWAT.FOV
+
+Customize your FOV (Field of View) beyond normal limits and adjust camera position relative to your player body.
+
+**Features:**
+- FOV clamp customization (min: 1, max: 150)
+- Horizontal HUD camera offset (more negative = more hands/weapon visible)
+- Vertical HUD camera offset (more negative = arms/weapon move up)
+- F12 ConfigurationManager integration
+
+**Changes for SPT 4.0.13:**
+- Updated to `GClass1085` (was `GClass1053` on SPT 3.x)
+- HarmonyLib instead of Aki.Reflection
+- New `SettingsTab.BindNumberSliderToSetting()` API
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.0.6-SPT.4.0.13-SamSWAT.FOV/SamSWAT.FOV-v1.0.6-SPT.4.0.13.zip)
+
+---
+
 ## 📦 Installation
 
 1. Download the release `.zip` for the mod you want
@@ -174,6 +194,7 @@ References resolve against `J:\Jogos\SPT-4.0.13` by default. Change `TarkovDir` 
 - **Dildz** — CNN-Containers SPT 4.0.X port
 - **Harmer** — ConfigurableInventories original mod
 - **Solarint** — GrenadeIndicator original mod
+- **SamSWAT** — SamSWAT.FOV original mod
 - **DarkEsteves** — Ports, fixes, and original mods
 
 ---
