@@ -19,8 +19,8 @@
 | **GrenadeIndicator** | 1.0.0 | 4.0.13 | [Solarint](https://github.com/Solarint) | Visual indicator for thrown grenades |
 | **SamSWAT.FOV** | 1.0.6 | 4.0.13 | [SamSWAT](https://github.com/SamSWAT) | Custom FOV clamp + camera position adjustment |
 | **SPTVRAMCleaner** | 1.1.0 | 4.0.13 | [Matsix](https://github.com/Matsix/SPTVRAMCleaner) | VRAM/RAM cleaner — auto, periodic & manual |
-|| **SPT-RamCleanerInterval** | 1.0.0 | 4.0.13 | [CactusPie](https://github.com/CactusPie) | Customizable RAM cleaner interval (30-900s) |
-|| **WTT-CornerStore** | 1.1.0 | 4.0.13 | [RockaHorse](https://github.com/RockaHorse) | Le Cheff food & drink trader + 50+ items |
+| **SPT-RamCleanerInterval** | 1.0.0 | 4.0.13 | [CactusPie](https://github.com/CactusPie) | Customizable RAM cleaner interval (30-900s) |
+| **WTT-CornerStore** | 1.1.0 | 4.0.13 | [RockaHorse](https://github.com/RockaHorse) | Le Cheff food & drink trader + 50+ items |
 
 ---
 
