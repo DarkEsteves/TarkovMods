@@ -19,7 +19,8 @@
 | **GrenadeIndicator** | 1.0.0 | 4.0.13 | [Solarint](https://github.com/Solarint) | Visual indicator for thrown grenades |
 | **SamSWAT.FOV** | 1.0.6 | 4.0.13 | [SamSWAT](https://github.com/SamSWAT) | Custom FOV clamp + camera position adjustment |
 | **SPTVRAMCleaner** | 1.1.0 | 4.0.13 | [Matsix](https://github.com/Matsix/SPTVRAMCleaner) | VRAM/RAM cleaner — auto, periodic & manual |
-| **SPT-RamCleanerInterval** | 1.0.0 | 4.0.13 | [CactusPie](https://github.com/CactusPie) | Customizable RAM cleaner interval (30-900s) |
+|| **SPT-RamCleanerInterval** | 1.0.0 | 4.0.13 | [CactusPie](https://github.com/CactusPie) | Customizable RAM cleaner interval (30-900s) |
+|| **WTT-CornerStore** | 1.1.0 | 4.0.13 | [RockaHorse](https://github.com/RockaHorse) | Le Cheff food & drink trader + 50+ items |
 
 ---
 
@@ -193,6 +194,22 @@ Customizable RAM cleaner interval for SPT 4.0.13. Allows you to override the def
 
 ---
 
+## 🍔 WTT-CornerStore
+
+Adds **Le Cheff**, a culinary trader selling food and drink items. Includes 50+ custom consumables: Coca-Cola, Red Bull (12+ flavors), Four Loko (20+ flavors), beer, whiskey, Doritos, Cheetos, Funyuns, posters, and more. Each item has unique buffs and effects.
+
+**Features:**
+- Le Cheff trader with configurable prices, stock, and buy restrictions
+- 50+ items with custom buffs (stamina, health, skills, weight limit, etc.)
+- Items spawn in loot containers (jackets, duffles, safes)
+- Config.json for easy customization
+
+**Items:** Water, Coca-Cola, Dr Pepper, Sprite, Red Bull (12 flavors), Bud Light, Heineken, Stella Artois, RockaHorse LSD Energy Beer, Bourbon Whiskey, Jägermeister, Four Loko (20+ flavors), Doritos, Cheetos, Funyuns, THC Gummies, Posters
+
+📥 [Download](https://github.com/DarkEsteves/TarkovMods/releases/download/v1.1.0-SPT.4.0.13-WTT-CornerStore/WTT-CornerStore-v1.1.0-SPT.4.0.13.zip)
+
+---
+
 ## 📦 Installation
 
 1. Download the release `.zip` for the mod you want
@@ -231,6 +248,7 @@ References resolve against `J:\Jogos\SPT-4.0.13` by default. Change `TarkovDir` 
 - **SamSWAT** — SamSWAT.FOV original mod
 - **Matsix** — SPTVRAMCleaner original mod
 - **CactusPie** — SPT-RamCleanerInterval original mod
+- **RockaHorse** — WTT-CornerStore original mod
 - **DarkEsteves** — Ports, fixes, and original mods
 
 ---
